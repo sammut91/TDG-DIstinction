@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <vector>
 #include "Vector2D.h"
+#include "GameObjectFactory.h"
 
 
 class GameState;
@@ -35,6 +36,7 @@ public:
 
 private:
 	bool m_running = true;
+	GameObjectFactory* m_GameObjectFactory ;
 	std::vector<GameState*> m_states;
 	
 };

@@ -1,5 +1,7 @@
 #include "PlayState.h"
-#include "GameObjectFactory.h"
+#include <SDL_image.h>
+//#include "boost\numeric\ublas\vector.hpp"
+//using namespace boost::numeric::ublas;
 
 PlayState PlayState::m_PlayState;
 
@@ -26,7 +28,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event)
 
 void PlayState::Update(Game* game)
 {
-
+	//vector<float f, float f2>
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window)

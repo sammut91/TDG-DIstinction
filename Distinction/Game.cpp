@@ -13,6 +13,7 @@ Game::~Game()
 void Game::Initialise()
 {
 	m_running = true;
+	m_GameObjectFactory->Factory
 }
 
 void Game::HandleInput(SDL_Event event)

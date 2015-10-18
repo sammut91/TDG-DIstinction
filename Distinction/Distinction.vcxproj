@@ -41,25 +41,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_ttf-2.0.12\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_mixer-2.0.0\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_image-2.0.0\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_ttf-2.0.12\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_mixer-2.0.0\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_image-2.0.0\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\boost_1_59_0\boost_1_59_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
