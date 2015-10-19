@@ -41,3 +41,9 @@ void PlayState::Initialise()
 {
 
 }
+
+bool PlayState::LoadMedia()
+{
+	bool success = true;
+	return success;
+}

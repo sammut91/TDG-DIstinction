@@ -11,6 +11,8 @@ public:
 	void Update(Game* game);
 	void Render(Game* game, SDL_Surface* surface, SDL_Window* window);
 
+	bool LoadMedia();
+
 	//singleton
 	static PlayState* Instance(){
 		return &m_PlayState;

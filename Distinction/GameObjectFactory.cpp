@@ -4,7 +4,7 @@ GameObjectFactory::GameObjectFactory()
 
 }
 
-GameObjectFactory::GameObjectFactory()
+GameObjectFactory::~GameObjectFactory()
 {
 
 }

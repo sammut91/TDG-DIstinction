@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_ttf-2.0.12\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_mixer-2.0.0\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_image-2.0.0\include;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_ttf-2.0.12\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_mixer-2.0.0\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\SDL2_image-2.0.0\lib\x86;E:\Games Programming\Distinction Project\Distinction\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDL2-2.0.3\SDL2_ttf-2.0.12\include;C:\SDL2-2.0.3\SDL2_mixer-2.0.0\include;C:\SDL2-2.0.3\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2-2.0.3\SDL2_ttf-2.0.12\lib\x86;C:\SDL2-2.0.3\SDL2_mixer-2.0.0\lib\x86;C:\SDL2-2.0.3\SDL2_image-2.0.0\lib\x86;C:\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="LButton.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -94,10 +95,28 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="LButton.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="Vector2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="AboutButton.bmp" />
+    <Image Include="ArrowIcon.bmp" />
+    <Image Include="BlueBlob.bmp" />
+    <Image Include="BombIcon.bmp" />
+    <Image Include="BuildIcon.bmp" />
+    <Image Include="CancelButton.bmp" />
+    <Image Include="GreenBlob.bmp" />
+    <Image Include="HelpButton.bmp" />
+    <Image Include="LaserIcon.bmp" />
+    <Image Include="MenuScreen.bmp" />
+    <Image Include="PlayButton.bmp" />
+    <Image Include="PurpleBlob.bmp" />
+    <Image Include="RedBlob.bmp" />
+    <Image Include="Upgrade.bmp" />
+    <Image Include="YellowBlob.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
