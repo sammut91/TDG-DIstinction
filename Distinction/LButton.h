@@ -7,7 +7,7 @@ class LButton
 {
 public:
 	//Initializes internal variables
-	LButton(std::string path, SDL_Renderer* r, std::string type);
+	LButton(std::string path, SDL_Renderer* r, std::string type, int xPos, int yPos);
 
 	//Sets top left position
 	void setPosition(int x, int y);

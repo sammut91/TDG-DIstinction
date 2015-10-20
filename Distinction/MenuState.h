@@ -17,6 +17,7 @@ public:
 	//add buttons
 	bool LoadMedia(SDL_Renderer* r);
 	bool loadFromFile(std::string path);
+	void addButton(LButton* b);
 	//singleton
 	static MenuState* Instance(){
 		return &m_MenuState;
@@ -32,8 +33,6 @@ private:
 	static MenuState m_MenuState;
 	SDL_Surface* m_BackgroundPNG;
 	LTexture* m_Background;
-	LButton* m_PlayButton;
-	LButton* m_AboutButton;
 
 	std::vector<LButton*> m_Buttons;
 };

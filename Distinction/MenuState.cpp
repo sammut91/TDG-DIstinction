@@ -26,7 +26,10 @@ void MenuState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	}
 	if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
-		m_PlayButton->handleEvent(&event, game, r);
+		for each (LButton* button in m_Buttons)
+		{
+			button->handleEvent(&event, game, r);
+		}
 	}
 }
 
@@ -40,7 +43,10 @@ void MenuState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	SDL_Rect bGround = { 0, 0, 1600, 900 };	
 	m_Background->render(0, 0,r,&bGround);
 	SDL_FillRect(surface, NULL, 0xFDD7E4);
-	m_PlayButton->render(r);
+	for each (LButton* button in m_Buttons)
+	{
+		button->render(r);
+	}
 	//surface = m_BackgroundPNG; 
 	//SDL_BlitSurface(m_BackgroundPNG, NULL, surface, NULL);
 	//SDL_UpdateWindowSurface(window);
@@ -52,8 +58,8 @@ void MenuState::Initialise(SDL_Renderer* r)
 {
 	int imfFlags = IMG_INIT_PNG;
 	m_Background = new LTexture();
-	m_PlayButton = new LButton("PlayButton.bmp", r, "play");
-	m_PlayButton->setPosition(200, 500);
+	addButton(new LButton("PlayButton.bmp", r, "play",200,500));
+	addButton(new LButton("HelpButton.bmp", r, "help",800,500));
 	LoadMedia(r);
 
 }
@@ -68,6 +74,11 @@ bool MenuState::LoadMedia(SDL_Renderer* r)
 	}
 
 	return success;
+}
+
+void MenuState::addButton(LButton* b)
+{
+	m_Buttons.push_back(b);
 }
 
 

@@ -2,11 +2,10 @@
 #include "Game.h"
 #include "PlayState.h"
 
-LButton::LButton(std::string path, SDL_Renderer* r, std::string type)
+LButton::LButton(std::string path, SDL_Renderer* r, std::string type, int xPos, int yPos)
 {
-	mPosition.x = 0;
-	mPosition.y = 0;
-	setSize(300, 200);
+	setPosition(xPos, yPos);
+	setSize(200, 400);
 	m_Type = type;
 	m_Texture = new LTexture();
 	m_Texture->loadFromFile(path.c_str(), r);
