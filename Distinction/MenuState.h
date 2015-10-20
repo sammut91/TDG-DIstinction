@@ -1,26 +1,27 @@
 #pragma once
 #include "GameState.h"
-#include "StateButton.h"
+#include <vector>
+
 
 class MenuState :
 	public GameState
 {
 public:
 	//game loop
-	void Initialise();
-	void HandleInput(Game* game, SDL_Event event);
+	void Initialise(SDL_Renderer* r);
+	void HandleInput(Game* game, SDL_Event event, SDL_Renderer* r);
 	void Update(Game* game);
-	void Render(Game* game, SDL_Surface* surface, SDL_Window* window);
+	void Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* r);
 
 	//load the interface
 	//add buttons
-	bool LoadMedia();
-	void AddButton(std::string type);
-	
+	bool LoadMedia(SDL_Renderer* r);
+	bool loadFromFile(std::string path);
 	//singleton
 	static MenuState* Instance(){
 		return &m_MenuState;
 	}
+
 
 	
 
@@ -30,6 +31,9 @@ protected:
 private:
 	static MenuState m_MenuState;
 	SDL_Surface* m_BackgroundPNG;
-	SDL_Surface* m_PlayButton;
+	LTexture* m_Background;
+	LButton* m_PlayButton;
+	LButton* m_AboutButton;
+
 	std::vector<LButton*> m_Buttons;
 };

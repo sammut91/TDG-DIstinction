@@ -84,10 +84,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="LButton.cpp" />
+    <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PlayState.cpp" />
-    <ClCompile Include="StateButton.cpp" />
     <ClCompile Include="Tower.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
@@ -97,9 +97,9 @@
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="LButton.h" />
+    <ClInclude Include="LTexture.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PlayState.h" />
-    <ClInclude Include="StateButton.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>

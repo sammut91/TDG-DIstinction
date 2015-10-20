@@ -35,31 +35,33 @@ int main(int argc, char* args[])
 		}
 		else
 		{
+			SDL_Renderer* m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			if (m_Renderer == NULL)
+			{
+				printf("Failed to load Renderer");
+			}
 			if (!game.LoadMedia())
 			{
 				printf("Failed to load media");
 			}
 			else
 			{
-				game.ChangeState(MenuState::Instance());
+				game.ChangeState(MenuState::Instance(),m_Renderer);
 
 				//Get window surface
 				screenSurface = SDL_GetWindowSurface(window);
 
 				//Fill the surface white
-				SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
-				//Update the surface
-				SDL_UpdateWindowSurface(window);
+				//SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
 
 				while (game.Running())
 				{
 					while (SDL_PollEvent(&event) != 0)
 					{
-						game.HandleInput(event);
+						game.HandleInput(event,m_Renderer);
 					}
 					game.Update();
-					game.Render(screenSurface,window);
+					game.Render(screenSurface,window,m_Renderer);
 				}
 			}
 

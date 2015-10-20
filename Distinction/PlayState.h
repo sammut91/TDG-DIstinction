@@ -6,12 +6,12 @@ class PlayState :
 {
 public:
 	//game loop
-	void Initialise();
-	void HandleInput(Game* game, SDL_Event event);
+	void Initialise(SDL_Renderer* r);
+	void HandleInput(Game* game, SDL_Event event, SDL_Renderer* r);
 	void Update(Game* game);
-	void Render(Game* game, SDL_Surface* surface, SDL_Window* window);
+	void Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer);
 
-	bool LoadMedia();
+	bool LoadMedia(SDL_Renderer* r);
 
 	//singleton
 	static PlayState* Instance(){

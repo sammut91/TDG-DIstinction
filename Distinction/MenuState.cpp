@@ -5,7 +5,7 @@
 
 MenuState MenuState::m_MenuState;
 
-void MenuState::HandleInput(Game* game, SDL_Event event)
+void MenuState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 {
 	if (event.type == SDL_QUIT)
 	{
@@ -16,13 +16,17 @@ void MenuState::HandleInput(Game* game, SDL_Event event)
 		switch (event.key.keysym.sym)
 		{
 		case SDLK_p:
-			game->PushState(PlayState::Instance());
+			game->PushState(PlayState::Instance(),r);
 			printf("Time to play");
 			break;
 		case SDLK_ESCAPE:
 			game->Quit();
 			break;
 		}
+	}
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		m_PlayButton->handleEvent(&event, game, r);
 	}
 }
 
@@ -31,59 +35,40 @@ void MenuState::Update(Game* game)
 
 }
 
-void MenuState::Render(Game* game, SDL_Surface* surface, SDL_Window* window)
+void MenuState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* r)
 {
+	SDL_Rect bGround = { 0, 0, 1600, 900 };	
+	m_Background->render(0, 0,r,&bGround);
 	SDL_FillRect(surface, NULL, 0xFDD7E4);
+	m_PlayButton->render(r);
 	//surface = m_BackgroundPNG; 
-	SDL_BlitSurface(m_BackgroundPNG, NULL, surface, NULL);
-	if (m_Buttons.size() != 0)
-	{
-		for each (LButton* button in m_Buttons)
-		{
-			m_PlayButton = button->render();
-		}
-	}
-	SDL_UpdateWindowSurface(window);
+	//SDL_BlitSurface(m_BackgroundPNG, NULL, surface, NULL);
+	//SDL_UpdateWindowSurface(window);
+	SDL_RenderPresent(r);
 	
 }
 
-void MenuState::Initialise()
+void MenuState::Initialise(SDL_Renderer* r)
 {
 	int imfFlags = IMG_INIT_PNG;
-	AddButton("play");
-	LoadMedia();
+	m_Background = new LTexture();
+	m_PlayButton = new LButton("PlayButton.bmp", r, "play");
+	m_PlayButton->setPosition(200, 500);
+	LoadMedia(r);
 
 }
 
-bool MenuState::LoadMedia()
+bool MenuState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;
-	m_BackgroundPNG = SDL_LoadBMP("MenuScreen.bmp");
-	if (m_BackgroundPNG == NULL)
+	if (!m_Background->loadFromFile("MenuScreen.bmp", r))
 	{
-		printf("IMG_Load: %s\n", SDL_GetError());
-		return false;
+		printf("Failed to load button sprite texture!\n");
+		success = false;
 	}
 
-	for each (LButton* button in m_Buttons)
-	{
-		if (button->loadMedia())
-		{
-			button->setPosition(200, 600);
-			button->setSize(200, 100);
-		}
-	}
 	return success;
 }
 
-void MenuState::AddButton(std::string type)
-{
-	if (type != "")
-	{
-		if (type == "menu" || type == "play")
-		{
-			m_Buttons.push_back(new StateButton(type));
-		}
-	}
-}
+
 

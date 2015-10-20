@@ -32,10 +32,10 @@
     <ClCompile Include="GameObjectFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LButton.cpp">
+    <ClCompile Include="LTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StateButton.cpp">
+    <ClCompile Include="LButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,10 +64,10 @@
     <ClInclude Include="GameObjectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LButton.h">
+    <ClInclude Include="LTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateButton.h">
+    <ClInclude Include="LButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,30 +1,31 @@
 #pragma once
 #include <SDL.h>
+#include "LTexture.h"
 #include "Game.h"
 
 class LButton
 {
 public:
-	LButton();
-	
-	//sets the top left position
+	//Initializes internal variables
+	LButton(std::string path, SDL_Renderer* r, std::string type);
+
+	//Sets top left position
 	void setPosition(int x, int y);
-	void setSize(int width, int height);
-	//handles the events for the mouse
-	void handleEvent(SDL_Event* event, Game* game);
+	void setSize(int x, int y);
+	//Handles mouse event
+	void handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r);
 
-	SDL_Surface* render();
-
-	bool loadMedia();
+	//Shows button sprite
+	void render(SDL_Renderer* r);
+	LTexture* GetTexture(){ return m_Texture; }
 
 private:
-	SDL_Point m_Position;
-	
-	//string for id
-	std::string m_ButtonType;
+	//Top left position
+	SDL_Point mPosition;
+	int m_Height;
+	int m_Width;
+	std::string m_Type;
 
-	//sprite for button
-	SDL_Surface* m_Sprite;
-	int m_Width = 0, m_Height = 0;
+	LTexture* m_Texture;
 };
 

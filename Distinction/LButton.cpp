@@ -1,12 +1,22 @@
 #include "LButton.h"
+#include "Game.h"
+#include "PlayState.h"
 
-
-LButton::LButton()
+LButton::LButton(std::string path, SDL_Renderer* r, std::string type)
 {
-	m_Position.x = 0;
-	m_Position.y = 0;
+	mPosition.x = 0;
+	mPosition.y = 0;
+	setSize(300, 200);
+	m_Type = type;
+	m_Texture = new LTexture();
+	m_Texture->loadFromFile(path.c_str(), r);
 
+}
 
+void LButton::setPosition(int x, int y)
+{
+	mPosition.x = x;
+	mPosition.y = y;
 }
 
 void LButton::setSize(int height, int width)
@@ -15,32 +25,10 @@ void LButton::setSize(int height, int width)
 	m_Width = width;
 }
 
-void LButton::setPosition(int x, int y)
-{
-	m_Position.x = x;
-	m_Position.y = y;
-}
-
-SDL_Surface* LButton::render()
-{
-	if (m_Sprite != NULL)
-	{
-		return m_Sprite;
-	}
-	else
-		return NULL;
-}
-
-bool LButton::loadMedia()
-{
-	bool success = true;
-	return success;
-}
-
-void LButton::handleEvent(SDL_Event* event, Game* game)
+void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 {
 	//If mouse event happened
-	if (event->type == SDL_MOUSEMOTION || event->type == SDL_MOUSEBUTTONDOWN || event->type == SDL_MOUSEBUTTONUP)
+	if (e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
 	{
 		//Get mouse position
 		int x, y;
@@ -50,38 +38,44 @@ void LButton::handleEvent(SDL_Event* event, Game* game)
 		bool inside = true;
 
 		//Mouse is left of the button
-		if (x < m_Position.x)
+		if (x < mPosition.x)
 		{
 			inside = false;
 		}
 		//Mouse is right of the button
-		else if (x > m_Position.x + m_Width)
+		else if (x > mPosition.x +m_Width)
 		{
 			inside = false;
 		}
 		//Mouse above the button
-		else if (y < m_Position.y)
+		else if (y < mPosition.y)
 		{
 			inside = false;
 		}
 		//Mouse below the button
-		else if (y > m_Position.y + m_Height)
+		else if (y > mPosition.y + m_Height)
 		{
 			inside = false;
 		}
 		//Mouse is inside button
 		else
 		{
-			//Handle what the button does here
-			switch (event->type)
+			//Set mouse over sprite
+			switch (e->type)
 			{
 			case SDL_MOUSEBUTTONDOWN:
-
-				break;
-			default:
+				if (m_Type == "play")
+				{
+					game->PushState(PlayState::Instance(), r);
+				}
 				break;
 			}
 		}
 	}
 }
 
+void LButton::render(SDL_Renderer* r)
+{
+	//Show current button sprite
+	m_Texture->render(mPosition.x, mPosition.y,r);
+}

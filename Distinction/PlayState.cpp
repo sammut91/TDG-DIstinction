@@ -5,7 +5,7 @@
 
 PlayState PlayState::m_PlayState;
 
-void PlayState::HandleInput(Game* game, SDL_Event event)
+void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 {
 	if (event.type == SDL_QUIT)
 	{
@@ -31,18 +31,18 @@ void PlayState::Update(Game* game)
 	//vector<float f, float f2>
 }
 
-void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window)
+void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
 {
 	SDL_FillRect(surface, NULL, 0x0066FF);
 	SDL_UpdateWindowSurface(window);
 }
 
-void PlayState::Initialise()
+void PlayState::Initialise(SDL_Renderer* r)
 {
 
 }
 
-bool PlayState::LoadMedia()
+bool PlayState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;
 	return success;

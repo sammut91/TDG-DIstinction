@@ -17,9 +17,9 @@ public:
 
 	//game loop
 	void Initialise();
-	void HandleInput(SDL_Event event);
+	void HandleInput(SDL_Event event, SDL_Renderer* r);
 	void Update();
-	void Render(SDL_Surface* surface, SDL_Window* window);
+	void Render(SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer);
 
 	bool Running(){
 		return m_running;
@@ -30,15 +30,15 @@ public:
 
 	//media contol load all media here
 	bool LoadMedia();
-
+	void SetRenderer(SDL_Renderer* renderer);
 	//state management
-	void ChangeState(GameState* state);
-	void PushState(GameState* state);
+	void ChangeState(GameState* state, SDL_Renderer* r);
+	void PushState(GameState* state, SDL_Renderer* r);
 	void PopState();
 
 private:
 	bool m_running = true;
-	GameObjectFactory* m_GameObjectFactory ;
+	GameObjectFactory* m_GameObjectFactory;
 	std::vector<GameState*> m_states;
 	
 };
