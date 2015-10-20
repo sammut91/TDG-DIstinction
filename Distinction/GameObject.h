@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <SDL.h>
+#include "LTexture.h"
 
 class GameObject
 {
@@ -12,7 +13,7 @@ public:
 	virtual void Render() = 0;
 	
 	//load the objects sprite
-	virtual bool Initialise(std::string objType) = 0;
+	virtual bool Initialise() = 0;
 	
 protected:
 	GameObject() {}

@@ -3,9 +3,8 @@
 #include <vector>
 #include "Vector2D.h"
 #include "GameObjectFactory.h"
-
-
-
+#include "Timer.h"
+#include <sstream>
 
 class GameState;
 
@@ -27,6 +26,9 @@ public:
 	void Quit(){
 		m_running = false;
 	}
+
+	//timing for the game
+	Timer m_Timer;
 
 	//media contol load all media here
 	bool LoadMedia();

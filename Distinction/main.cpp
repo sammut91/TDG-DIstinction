@@ -16,7 +16,13 @@ int main(int argc, char* args[])
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	Game game;
+	game.m_Timer.start();
+	//event handler
 	SDL_Event event;
+
+	//initialise the timer
+
+
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
 
@@ -56,12 +62,14 @@ int main(int argc, char* args[])
 
 				while (game.Running())
 				{
+					
 					while (SDL_PollEvent(&event) != 0)
 					{
 						game.HandleInput(event,m_Renderer);
 					}
 					game.Update();
 					game.Render(screenSurface,window,m_Renderer);
+
 				}
 			}
 

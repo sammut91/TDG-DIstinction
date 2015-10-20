@@ -13,11 +13,18 @@ void MenuState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	}
 	if (event.type == SDL_KEYDOWN)
 	{
+		std::stringstream timeText;
 		switch (event.key.keysym.sym)
 		{
 		case SDLK_p:
 			game->PushState(PlayState::Instance(),r);
 			printf("Time to play");
+			break;
+		case SDLK_t:
+			
+			timeText.str("");
+			timeText << (game->m_Timer.getTicks() / 1000.f);
+			std::cout << timeText.str() << std::endl;
 			break;
 		case SDLK_ESCAPE:
 			game->Quit();

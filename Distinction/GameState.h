@@ -7,6 +7,8 @@
 #include <SDL_mixer.h>
 #include "LTexture.h"
 #include "LButton.h"
+#include <sstream>
+#include <iostream>
 
 class GameState
 {
