@@ -5,6 +5,9 @@
 
 PlayState PlayState::m_PlayState;
 
+static const int SCREEN_WIDTH = 1600;
+static const int SCREEN_HEIGHT = 900;
+
 void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 {
 	if (event.type == SDL_QUIT)

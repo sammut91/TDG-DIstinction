@@ -2,8 +2,10 @@
 #include "PlayState.h"
 #include <SDL_image.h>
 
-
 MenuState MenuState::m_MenuState;
+
+static const int SCREEN_WIDTH = 1600;
+static const int SCREEN_HEIGHT = 900;
 
 void MenuState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 {
@@ -47,7 +49,7 @@ void MenuState::Update(Game* game)
 
 void MenuState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* r)
 {
-	SDL_Rect bGround = { 0, 0, 1600, 900 };	
+	SDL_Rect bGround = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };	
 	m_Background->render(0, 0,r,&bGround);
 	SDL_FillRect(surface, NULL, 0xFDD7E4);
 	for each (LButton* button in m_Buttons)
