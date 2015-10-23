@@ -54,3 +54,10 @@ void Minion::Render(SDL_Renderer* r)
 {
 	m_Texture->render(m_Position->x, m_Position->y, r);
 }
+
+bool Minion::isAlive()
+{
+	bool alive = true;
+
+	return alive;
+}

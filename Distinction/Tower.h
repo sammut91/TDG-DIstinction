@@ -33,6 +33,12 @@ public:
 	//load the tower sprite and initialisation features
 	bool Initialise(std::string objType);
 
+	//checks for the clicks or placements of towers
+	bool isSelected();
+	bool isBeingPlaced();
+	bool isPlaced();
+
+
 private:
 	//member values for each tower
 	float m_Cost= 0, m_Range =0;

@@ -17,11 +17,14 @@ public:
 
 	bool Initialise();
 
+	//checks for updating minions
+	bool isAlive();
 
 private:
 	LTexture* m_Texture;
 	SDL_Point* m_Position;
 	int m_Height, m_Width;
 	float m_VelX, m_VelY;
+	int m_Health;
 };
 

@@ -53,3 +53,24 @@ bool Tower::Initialise(std::string objType)
 		return false;
 	return success;
 }
+
+bool Tower::isBeingPlaced()
+{
+	bool selected = true;
+
+	return selected;
+}
+
+bool Tower::isSelected()
+{
+	bool selected = true;
+
+	return selected;
+}
+
+bool Tower::isPlaced()
+{
+	bool placed = true;
+
+	return placed;
+}
