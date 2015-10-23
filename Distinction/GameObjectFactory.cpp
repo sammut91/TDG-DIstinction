@@ -14,7 +14,7 @@ void GameObjectFactory::createTower()
 
 }
 
-void GameObjectFactory::createUnit()
+void GameObjectFactory::createMinion()
 {
 
 }

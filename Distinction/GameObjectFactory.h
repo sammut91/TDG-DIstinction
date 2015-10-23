@@ -8,7 +8,7 @@ public:
 	~GameObjectFactory();
 
 	void createTower();
-	void createUnit();
+	void createMinion();
 
 	void cleanup();
 };

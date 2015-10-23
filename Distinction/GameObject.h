@@ -9,6 +9,8 @@ public:
 	//update the game object
 	virtual void Update() = 0;
 
+	virtual void HandleInput(SDL_Event* event) = 0;
+
 	//draw the game object onto the screen
 	virtual void Render() = 0;
 	
