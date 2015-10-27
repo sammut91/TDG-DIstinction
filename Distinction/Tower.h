@@ -16,11 +16,14 @@ class Tower :
 public:
 	Tower();
 
-	Tower(std::string towerType);
+	Tower(std::string towerType, float xPos, float yPos);
 	~Tower();
+
 	//SDL Draw and update
 	void Update();
+	void HandleInput(SDL_Event* event);
 	void Render();
+	void Render(SDL_Renderer* r);
 
 	//tower target aquisition
 	void getTarget();
@@ -32,6 +35,8 @@ public:
 
 	//load the tower sprite and initialisation features
 	bool Initialise(std::string objType);
+	//init with renderer
+	bool Initialise(std::string objType, SDL_Renderer* renderer);
 
 	//checks for the clicks or placements of towers
 	bool isSelected();
@@ -43,6 +48,7 @@ private:
 	//member values for each tower
 	float m_Cost= 0, m_Range =0;
 	std::string objType;
-	std::vector<SDL_Surface*> m_Sprites;
+	Point2D* m_Position;
+	LTexture* m_Texture;
 };
 

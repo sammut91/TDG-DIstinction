@@ -1,7 +1,6 @@
 #include "PlayState.h"
 #include <SDL_image.h>
-//#include "boost\numeric\ublas\vector.hpp"
-//using namespace boost::numeric::ublas;
+
 
 PlayState PlayState::m_PlayState;
 
@@ -106,5 +105,5 @@ bool PlayState::LoadMedia(SDL_Renderer* r)
 
 void PlayState::AddMinion()
 {
-	m_Minions.push_back(new Minion());
+	m_Minions.push_back(new HeavyMinion());
 }

@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include <sstream>
 #include "Minion.h"
+#include "HeavyMinion.h"
 
 class GameState;
 
@@ -46,6 +47,6 @@ private:
 	bool m_running = true;
 	GameObjectFactory* m_GameObjectFactory;
 	std::vector<GameState*> m_states;
-	
+
 };
 

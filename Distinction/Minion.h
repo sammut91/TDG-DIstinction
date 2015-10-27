@@ -18,16 +18,16 @@ public:
 	void setAcceleration(float xAcc, float yAcc);
 	
 	//controlling the minions
-	void Update();
-	void Update(float timeStep);
-	void HandleInput(SDL_Event* event);
-	void Render();
-	void Render(SDL_Renderer* r);
+	virtual void Update();
+	virtual void Update(float timeStep);
+	virtual void HandleInput(SDL_Event* event);
+	virtual void Render();
+	virtual void Render(SDL_Renderer* r);
 
 
-	bool Initialise();
+	virtual bool Initialise();
 	//init with renderer
-	bool Initialise(SDL_Renderer* renderer);
+	virtual bool Initialise(SDL_Renderer* renderer);
 
 	//checks for updating minions
 	bool isAlive();

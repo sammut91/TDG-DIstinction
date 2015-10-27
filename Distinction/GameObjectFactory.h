@@ -1,5 +1,6 @@
 #pragma once
 #include "Tower.h"
+#include "Minion.h"
 
 class GameObjectFactory
 {

@@ -6,6 +6,7 @@ Minion::Minion()
 	m_Position = new Point2D(100.0, 100.0);
 	m_Velocity = new Vector2D(0.0, 0.0);
 	m_Accel = new Vector2D(0.0, 0.0);
+	m_Texture = new LTexture();
 }
 
 
@@ -23,16 +24,12 @@ Minion::Minion(int xPos, int yPos)
 bool Minion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true; 	
-	setPosition(200, 200);
-	setSize(50, 50);
 	setVelocity(0.0, 0.0);
-	m_Texture = new LTexture();
 	if (!m_Texture->loadFromFile("BlueBlob.png", renderer))
 	{
 		printf("Failed to load minion sprite texture!\n");
 		success = false;
-	}
-	
+	}	
 	return success;
 }
 
