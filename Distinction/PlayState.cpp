@@ -26,27 +26,85 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			game->Quit();
 			break;
 		}
+
+		if (!m_Minions.empty())
+		{
+			for each (Minion* m in m_Minions)
+			{
+				m->HandleInput(&event);
+			}
+		}
+	}
+	if (event.type == SDL_KEYUP)
+	{
+		if (!m_Minions.empty())
+		{
+			for each (Minion* m in m_Minions)
+			{
+				m->HandleInput(&event);
+			}
+		}
 	}
 }
 
 void PlayState::Update(Game* game)
 {
-	//vector<float f, float f2>
+	if (!m_Minions.empty())
+	{
+		for each (Minion* m in m_Minions)
+		{
+			m->Update(game->GetTimeStep());
+		}
+	}
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
 {
+	
+	SDL_Rect bGround = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	m_Background->render(0, 0, renderer, &bGround);
 	SDL_FillRect(surface, NULL, 0x0066FF);
-	SDL_UpdateWindowSurface(window);
+	//SDL_UpdateWindowSurface(window);
+	if (!m_Minions.empty())
+	{
+		for each (Minion* m in m_Minions)
+		{
+			m->Render(renderer);
+		}
+	}
+	SDL_RenderPresent(renderer);
 }
+
+void PlayState::Initialise(SDL_Renderer* r, Game* game)
+{
+	
+}
+
 
 void PlayState::Initialise(SDL_Renderer* r)
 {
-
+	SDL_RenderClear(r);
+	m_Background = new LTexture();
+	AddMinion();
+	for each (Minion* m in m_Minions)
+	{
+		m->Initialise(r);
+	}
+	LoadMedia(r);
 }
 
 bool PlayState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;
+	if (!m_Background->loadFromFile("PlayScreen.bmp", r))
+	{
+		printf("Failed to load background sprite texture!\n");
+		success = false;
+	}
 	return success;
+}
+
+void PlayState::AddMinion()
+{
+	m_Minions.push_back(new Minion());
 }

@@ -105,5 +105,7 @@
     <Image Include="RedBlob.bmp" />
     <Image Include="Upgrade.bmp" />
     <Image Include="YellowBlob.bmp" />
+    <Image Include="PlayScreen.bmp" />
+    <Image Include="BlueBlob.png" />
   </ItemGroup>
 </Project>

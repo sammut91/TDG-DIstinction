@@ -7,6 +7,8 @@ class PlayState :
 public:
 	//game loop
 	void Initialise(SDL_Renderer* r);
+	//init with game
+	void Initialise(SDL_Renderer* r, Game* game);
 	void HandleInput(Game* game, SDL_Event event, SDL_Renderer* r);
 	void Update(Game* game);
 	void Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer);
@@ -18,10 +20,14 @@ public:
 		return &m_PlayState;
 	}
 
+	void AddMinion();
+
 protected:
 	PlayState() {}
 
 private:
 	static PlayState m_PlayState;
+	LTexture* m_Background;
+	std::vector<Minion*> m_Minions;
 
 };

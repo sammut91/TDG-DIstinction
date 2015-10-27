@@ -9,22 +9,37 @@ public:
 
 	int GetHeight(){ return m_Height; }
 	int GetWidth(){ return m_Width; }
+
+	void setPosition(int x, int y);
+	void setSize(int x, int y);
+	void setVelocity(float xVel, float yVel);
+	void setAcceleration(float xAcc, float yAcc);
 	
 	//controlling the minions
+	void Update();
 	void Update(float timeStep);
 	void HandleInput(SDL_Event* event);
+	void Render();
 	void Render(SDL_Renderer* r);
 
+
 	bool Initialise();
+	//init with renderer
+	bool Initialise(SDL_Renderer* renderer);
 
 	//checks for updating minions
 	bool isAlive();
 
+	//force calculations
+	Vector2D CalculateForce(float timeStep);
+	Vector2D Seek(Point2D* targetPos);
+
 private:
 	LTexture* m_Texture;
-	SDL_Point* m_Position;
+	Point2D* m_Position;
 	int m_Height, m_Width;
-	float m_VelX, m_VelY;
 	int m_Health;
+	Vector2D* m_Velocity;
+	Vector2D* m_Accel;
 };
 

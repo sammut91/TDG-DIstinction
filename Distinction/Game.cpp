@@ -67,3 +67,12 @@ bool Game::LoadMedia()
 
 	return success;
 }
+
+float Game::GetTimeStep()
+{
+	float timeStep = 0.0;
+	timeStep = m_Timer.getTicks() / 1000.0;
+	return timeStep;
+}
+
+

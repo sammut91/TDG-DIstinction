@@ -17,3 +17,13 @@ Vector2D& Vector2D::Rotate(float angle)
 
 	return (*this);
 }
+
+Vector2D& Vector2D::Truncate(float maxLength)
+{
+	if (Magnitude(*this) > maxLength)
+	{
+		this->Normalize();
+		this->operator*=(maxLength);
+	}
+	return (*this);
+}

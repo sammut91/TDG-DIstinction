@@ -120,6 +120,8 @@ public:
 	}
 
 	Vector2D& Rotate(float angle);
+
+	Vector2D& Truncate(float maxLength);
 };
 
 
@@ -182,6 +184,14 @@ public:
 	{
 		float f = 1.0F / t;
 		return (Point2D(x * f, y * f));
+	}
+	
+	float distance(Point2D p)
+	{
+		float dx = p.x - this->x;
+		float dy = p.y - this->y;
+
+		return sqrt((dx*dx) + (dy*dy));
 	}
 };
 

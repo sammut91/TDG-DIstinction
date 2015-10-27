@@ -5,6 +5,7 @@
 #include "GameObjectFactory.h"
 #include "Timer.h"
 #include <sstream>
+#include "Minion.h"
 
 class GameState;
 
@@ -33,10 +34,13 @@ public:
 	//media contol load all media here
 	bool LoadMedia();
 	void SetRenderer(SDL_Renderer* renderer);
+
 	//state management
 	void ChangeState(GameState* state, SDL_Renderer* r);
 	void PushState(GameState* state, SDL_Renderer* r);
 	void PopState();
+	
+	float GetTimeStep();
 
 private:
 	bool m_running = true;

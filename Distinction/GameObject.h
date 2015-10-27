@@ -2,6 +2,7 @@
 #include <string>
 #include <SDL.h>
 #include "LTexture.h"
+#include "Vector2D.h"
 
 class GameObject
 {
