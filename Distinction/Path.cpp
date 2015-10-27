@@ -28,7 +28,7 @@ Vector2D* Path::currentPoint()
 {
 	if (!m_Points.empty())
 	{
-		m_Points.at(m_CurrentPtIndex);
+		return m_Points.at(m_CurrentPtIndex);
 	}
 }
 

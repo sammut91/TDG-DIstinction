@@ -7,6 +7,8 @@ public:
 	Minion();
 	~Minion();
 
+	Minion(int xPos, int yPos);
+
 	int GetHeight(){ return m_Height; }
 	int GetWidth(){ return m_Width; }
 

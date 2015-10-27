@@ -13,6 +13,13 @@ Minion::~Minion()
 {
 }
 
+Minion::Minion(int xPos, int yPos)
+{
+	m_Position = new Point2D(xPos, yPos);
+	m_Velocity = new Vector2D(0.0, 0.0);
+	m_Accel = new Vector2D(0.0, 0.0);
+}
+
 bool Minion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true; 	
