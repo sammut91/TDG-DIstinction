@@ -25,7 +25,7 @@ HeavyMinion::HeavyMinion(int xPos, int yPos)
 bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true;
-	setVelocity(0.0, 0.0);
+	this->setVelocity(0.0, 0.0);
 	if (!m_Texture->loadFromFile("PurpleBlob.png", renderer))
 	{
 		printf("Failed to load minion sprite texture!\n");
@@ -37,8 +37,8 @@ bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 
 void HeavyMinion::Update(float timeStep)
 {
-	float maxForce = 1.0;
-	float maxSpeed = 1.0;
+	float maxForce = 50.0;
+	float maxSpeed = 100.0;
 	Vector2D force = CalculateForce(timeStep);
 
 	force.Truncate(maxForce);

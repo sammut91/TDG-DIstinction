@@ -13,6 +13,7 @@ Path::~Path()
 
 void Path::createPath(int numberOfPoints, bool looped)
 {
+	clear();
 	m_NumberOfPoints = numberOfPoints;
 	m_Looped = looped;
 	int randX = 0;

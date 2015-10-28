@@ -16,7 +16,7 @@ int main(int argc, char* args[])
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	Game game;
-	game.m_Timer.start();
+	//game.m_Timer.start();
 	//event handler
 	SDL_Event event;
 
@@ -68,8 +68,9 @@ int main(int argc, char* args[])
 						game.HandleInput(event,m_Renderer);
 					}
 					game.Update();
+					game.m_Timer.start();
 					game.Render(screenSurface,window,m_Renderer);
-
+					
 				}
 			}
 
