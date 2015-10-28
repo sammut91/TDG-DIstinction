@@ -93,7 +93,7 @@ void PlayState::Initialise(SDL_Renderer* r)
 {
 	SDL_RenderClear(r);
 	m_Path = new Path();
-	m_Path->createPath(10, false);
+	m_Path->createPath(false);
 	m_Background = new LTexture();
 	AddMinion();
 	for each (Minion* m in m_Minions)

@@ -9,7 +9,8 @@ public:
 	Path();
 	~Path();
 
-	void createPath(int numberOfPoints, bool looped);
+	void createRandomPath(int numberOfPoints, bool looped);
+	void createPath(bool looped);
 	Point2D* currentPoint();
 	
 	bool isFinished();

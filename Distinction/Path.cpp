@@ -11,7 +11,7 @@ Path::~Path()
 {
 }
 
-void Path::createPath(int numberOfPoints, bool looped)
+void Path::createRandomPath(int numberOfPoints, bool looped)
 {
 	clear();
 	m_NumberOfPoints = numberOfPoints;
@@ -24,7 +24,22 @@ void Path::createPath(int numberOfPoints, bool looped)
 		randX = rand() % 100;
 		m_Points.push_back(new Point2D(100.0+ 5*randX, 100.0+5*randY));
 	}
+}
 
+void Path::createPath(bool looped)
+{
+	clear();
+	m_Looped = looped;
+
+	m_Points.push_back(new Point2D(100, 100));
+	m_Points.push_back(new Point2D(100, 700));
+	m_Points.push_back(new Point2D(500, 700));
+	m_Points.push_back(new Point2D(500, 100));
+	m_Points.push_back(new Point2D(900, 100));
+	m_Points.push_back(new Point2D(900, 700));
+	m_Points.push_back(new Point2D(1300, 700));
+	m_Points.push_back(new Point2D(1300, 100));
+	m_Points.push_back(new Point2D(1400, 100));
 
 }
 
