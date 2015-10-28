@@ -53,6 +53,19 @@ void PlayState::Update(Game* game)
 		for each (Minion* m in m_Minions)
 		{
 			m->Update(game->GetTimeStep());
+			if (m->AtDestination())
+			{
+
+			}
+		}
+
+		for (int i = 0; i < m_Minions.size(); i++)
+		{
+			m_Minions[i]->Update(game->GetTimeStep());
+			if (m_Minions[i]->AtDestination())
+			{
+				m_Minions.erase(m_Minions.begin() + i);
+			}
 		}
 	}
 }

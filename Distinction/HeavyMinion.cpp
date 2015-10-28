@@ -98,7 +98,7 @@ bool HeavyMinion::Initialise()
 Vector2D HeavyMinion::Seek(Point2D* targetPos)
 {
 	Vector2D* desired_vel = (&targetPos->operator-(*m_Position));
-
+	desired_vel->operator*(400.0);
 	return (desired_vel->operator-(*m_Velocity));
 
 }
@@ -108,7 +108,7 @@ Vector2D HeavyMinion::FollowPath()
 	Vector2D force;
 	if (m_Path->isFinished())
 	{	
-		if (m_Position->distance(*m_Path->currentPoint())>10)
+		if (m_Position->distance(*m_Path->currentPoint())>20)
 		{
 			return force = Seek(m_Path->currentPoint());
 		}
@@ -138,4 +138,15 @@ void HeavyMinion::AddPath(Path* p)
 {
 	if(p!= NULL)	
 		this->m_Path = p;
+}
+
+bool HeavyMinion::AtDestination()
+{
+	bool atDest = false;
+	if (this->m_Position->distance(*this->m_Path->getDestination())<20)
+	{
+		atDest = true;
+	}
+
+	return atDest;
 }

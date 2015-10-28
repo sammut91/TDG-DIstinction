@@ -16,6 +16,7 @@ public:
 
 	//path
 	void AddPath(Path* p);
+	bool AtDestination();
 
 	//calculations
 	Vector2D CalculateForce(float timeStep);

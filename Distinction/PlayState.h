@@ -31,5 +31,4 @@ private:
 	LTexture* m_Background;
 	std::vector<Minion*> m_Minions;
 	Path* m_Path;
-
 };

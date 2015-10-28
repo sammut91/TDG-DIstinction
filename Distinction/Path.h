@@ -13,7 +13,7 @@ public:
 	
 	bool isFinished();
 	void incrementPoint();
-
+	Point2D* getDestination();
 	std::vector<Point2D*> getPoints() {
 		return m_Points;
 	}

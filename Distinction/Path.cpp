@@ -15,9 +15,13 @@ void Path::createPath(int numberOfPoints, bool looped)
 {
 	m_NumberOfPoints = numberOfPoints;
 	m_Looped = looped;
+	int randX = 0;
+	int randY = 0;
 	for (int i = 0; i < numberOfPoints; i++)
 	{
-		m_Points.push_back(new Point2D(50 * i + i + 120.0, 90 * i + i + 120.0));
+		randY = rand() % 70;
+		randX = rand() % 100;
+		m_Points.push_back(new Point2D(100.0+ 5*randX, 100.0+5*randY));
 	}
 
 
@@ -55,6 +59,14 @@ void Path::incrementPoint()
 void Path::addWaypoint(Point2D* p)
 {
 
+}
+
+Point2D* Path::getDestination()
+{
+	if (!m_Points.empty())
+	{
+		return m_Points.back();
+	}
 }
 
 void Path::clear()

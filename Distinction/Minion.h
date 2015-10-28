@@ -33,6 +33,7 @@ public:
 	//path control
 	virtual void AddPath(Path* p);
 	virtual Vector2D FollowPath();
+	virtual bool AtDestination();
 
 	//checks for updating minions
 	bool isAlive();

@@ -200,3 +200,14 @@ void Minion::AddPath(Path* p)
 		m_Path = p;
 }
 
+bool Minion::AtDestination()
+{
+	bool atDest = false;
+	if (m_Position->distance(*m_Path->getDestination())<20)
+	{
+		atDest = true;
+	}
+
+	return atDest;
+}
+
