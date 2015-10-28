@@ -83,11 +83,14 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 void PlayState::Initialise(SDL_Renderer* r)
 {
 	SDL_RenderClear(r);
+	m_Path = new Path();
+	m_Path->createPath(10, false);
 	m_Background = new LTexture();
 	AddMinion();
 	for each (Minion* m in m_Minions)
 	{
 		m->Initialise(r);
+		m->AddPath(m_Path);
 	}
 	LoadMedia(r);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "Path.h" 
 
 class PlayState :
 	public GameState
@@ -29,5 +30,6 @@ private:
 	static PlayState m_PlayState;
 	LTexture* m_Background;
 	std::vector<Minion*> m_Minions;
+	Path* m_Path;
 
 };

@@ -138,17 +138,41 @@ void Minion::setAcceleration(float xAcc, float yAcc)
 
 Vector2D Minion::Seek(Point2D* targetPos)
 {
-	Vector2D* desired_vel = (&targetPos->operator-(*this->m_Position));
+	Vector2D* desired_vel = (&targetPos->operator-(*m_Position));
+	desired_vel->Normalize().operator*(23.6);
 
-	return (desired_vel->operator-(*this->m_Velocity));
+	return (desired_vel->operator-(*m_Velocity));
 
 }
+Vector2D Minion::FollowPath()
+{
+	Vector2D force;
+	if (m_Path->isFinished())
+	{
+		if (m_Position->distance(*m_Path->currentPoint())>10)
+		{
+			return force = Seek(m_Path->currentPoint());
+		}
+		force.operator&=(Point2D(0.0, 0.0));
+
+		return force;
+	}
+	else
+	{
+		if (m_Position->distance(*m_Path->currentPoint())<30)
+		{
+			m_Path->incrementPoint();
+		}
+		return force = Seek(m_Path->currentPoint());
+	}
+}
+
 
 Vector2D Minion::CalculateForce(float timeStep)
 {
 	Vector2D force;
 	Point2D*  test = new Point2D(1300.0, 600.0);
-	if (this->m_Position->distance(*test)>10)
+	if (m_Position->distance(*test)>10)
 	{
 		return force = Seek(test);
 	}
@@ -168,5 +192,11 @@ bool Minion::Initialise()
 	bool success = true;
 
 	return true;
+}
+
+void Minion::AddPath(Path* p)
+{
+	if (p != NULL)
+		m_Path = p;
 }
 

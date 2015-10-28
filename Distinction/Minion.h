@@ -1,4 +1,5 @@
 #pragma once
+#include "Path.h"
 #include "GameObject.h"
 class Minion :
 	public GameObject
@@ -24,17 +25,21 @@ public:
 	virtual void Render();
 	virtual void Render(SDL_Renderer* r);
 
-
 	virtual bool Initialise();
 	//init with renderer
 	virtual bool Initialise(SDL_Renderer* renderer);
+
+
+	//path control
+	virtual void AddPath(Path* p);
+	virtual Vector2D FollowPath();
 
 	//checks for updating minions
 	bool isAlive();
 
 	//force calculations
-	Vector2D CalculateForce(float timeStep);
-	Vector2D Seek(Point2D* targetPos);
+	virtual Vector2D CalculateForce(float timeStep);
+	virtual Vector2D Seek(Point2D* targetPos);
 
 private:
 	LTexture* m_Texture;
@@ -43,5 +48,6 @@ private:
 	int m_Health;
 	Vector2D* m_Velocity;
 	Vector2D* m_Accel;
+	Path* m_Path;
 };
 

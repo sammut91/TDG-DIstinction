@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Vector2D.h"
+#include <random>
 class Path
 {
 public:
@@ -8,12 +9,12 @@ public:
 	~Path();
 
 	void createPath(int numberOfPoints, bool looped);
-	Vector2D* currentPoint();
+	Point2D* currentPoint();
 	
 	bool isFinished();
 	void incrementPoint();
 
-	std::vector<Vector2D*> getPoints() {
+	std::vector<Point2D*> getPoints() {
 		return m_Points;
 	}
 
@@ -21,10 +22,10 @@ public:
 	void clear();
 
 private:
-	bool m_Looped;
+	bool m_Looped = false;
 	int m_NumberOfPoints;
 	int m_CurrentPtIndex;
-	std::vector<Vector2D*> m_Points;
+	std::vector<Point2D*> m_Points;
 
 };
 

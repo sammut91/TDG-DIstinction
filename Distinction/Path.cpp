@@ -15,16 +15,15 @@ void Path::createPath(int numberOfPoints, bool looped)
 {
 	m_NumberOfPoints = numberOfPoints;
 	m_Looped = looped;
-
 	for (int i = 0; i < numberOfPoints; i++)
 	{
-		m_Points.push_back(new Vector2D(0.0, 0.0));
+		m_Points.push_back(new Point2D(50 * i + i + 120.0, 90 * i + i + 120.0));
 	}
 
 
 }
 
-Vector2D* Path::currentPoint()
+Point2D* Path::currentPoint()
 {
 	if (!m_Points.empty())
 	{
@@ -38,6 +37,7 @@ bool Path::isFinished()
 	{
 		return true;
 	}
+	return false;
 }
 
 void Path::incrementPoint()
@@ -47,7 +47,7 @@ void Path::incrementPoint()
 		m_CurrentPtIndex += 1;
 		if (isFinished())
 		{
-			m_CurrentPtIndex = 0;
+			m_CurrentPtIndex = m_Points.size()-1;
 		}			
 	}
 }
