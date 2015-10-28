@@ -5,7 +5,9 @@
 #include "Timer.h"
 #include <sstream>
 #include "Minion.h"
-#include "HeavyMinion.h"
+#include "MinionFactory.h"
+#include "Tower.h"
+#include "TowerFactory.h"
 #include "Path.h"
 
 class GameState;
@@ -52,6 +54,8 @@ private:
 	std::vector<GameState*> m_states;
 	std::vector<Minion*> m_Minions;
 	Path* m_Path;
+	TowerFactory* m_TowerFactory;
+	MinionFactory* m_Spawner;
 
 };
 

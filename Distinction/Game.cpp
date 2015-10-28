@@ -16,6 +16,8 @@ void Game::Initialise()
 	m_running = true;
 	m_Path = new Path();
 	m_Path->createPath(false);
+	m_Spawner = new MinionFactory();
+	m_TowerFactory = new TowerFactory();
 }
 
 void Game::HandleInput(SDL_Event event, SDL_Renderer* r)
