@@ -2,6 +2,7 @@
 #include <vector>
 #include "Vector2D.h"
 #include <random>
+#include <SDL.h>
 class Path
 {
 public:
@@ -20,6 +21,8 @@ public:
 
 	void addWaypoint(Point2D* point);
 	void clear();
+
+	void Render(SDL_Renderer* renderer);
 
 private:
 	bool m_Looped = false;

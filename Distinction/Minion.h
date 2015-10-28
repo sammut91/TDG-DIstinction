@@ -34,6 +34,9 @@ public:
 	virtual void AddPath(Path* p);
 	virtual Vector2D FollowPath();
 	virtual bool AtDestination();
+	virtual Path* GetPath(){
+		return this->m_Path;
+	}
 
 	//checks for updating minions
 	bool isAlive();

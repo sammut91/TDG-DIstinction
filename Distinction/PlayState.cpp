@@ -50,19 +50,10 @@ void PlayState::Update(Game* game)
 {
 	if (!m_Minions.empty())
 	{
-		for each (Minion* m in m_Minions)
-		{
-			m->Update(game->GetTimeStep());
-			if (m->AtDestination())
-			{
-
-			}
-		}
-
 		for (int i = 0; i < m_Minions.size(); i++)
 		{
 			m_Minions[i]->Update(game->GetTimeStep());
-			if (m_Minions[i]->AtDestination())
+			if (m_Minions[i]->AtDestination() && m_Minions[i]->GetPath()->isFinished())
 			{
 				m_Minions.erase(m_Minions.begin() + i);
 			}
@@ -84,6 +75,11 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 			m->Render(renderer);
 		}
 	}
+	if (this->m_Path != NULL)
+	{
+		m_Path->Render(renderer);
+	}
+
 	SDL_RenderPresent(renderer);
 }
 

@@ -37,7 +37,7 @@ bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 
 void HeavyMinion::Update(float timeStep)
 {
-	float maxForce = 50.0;
+	float maxForce = 100.0;
 	float maxSpeed = 100.0;
 	Vector2D force = CalculateForce(timeStep);
 
@@ -108,7 +108,7 @@ Vector2D HeavyMinion::FollowPath()
 	Vector2D force;
 	if (m_Path->isFinished())
 	{	
-		if (m_Position->distance(*m_Path->currentPoint())>20)
+		if (m_Position->distance(*m_Path->currentPoint())>11)
 		{
 			return force = Seek(m_Path->currentPoint());
 		}
@@ -118,7 +118,7 @@ Vector2D HeavyMinion::FollowPath()
 	}
 	else
 	{
-		if (m_Position->distance(*m_Path->currentPoint())<30)
+		if (m_Position->distance(*m_Path->currentPoint())<10)
 		{
 			m_Path->incrementPoint();
 		}

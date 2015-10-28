@@ -17,6 +17,9 @@ public:
 	//path
 	void AddPath(Path* p);
 	bool AtDestination();
+	Path* GetPath() {
+		return this->m_Path;
+	}
 
 	//calculations
 	Vector2D CalculateForce(float timeStep);

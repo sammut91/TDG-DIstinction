@@ -38,7 +38,7 @@ Point2D* Path::currentPoint()
 
 bool Path::isFinished()
 {
-	if (m_CurrentPtIndex == m_Points.size())
+	if (m_CurrentPtIndex == m_Points.size()-1)
 	{
 		return true;
 	}
@@ -75,5 +75,24 @@ void Path::clear()
 	if (!m_Points.empty())
 	{
 		m_Points.clear();
+	}
+}
+
+void Path::Render(SDL_Renderer* renderer)
+{
+	if (!m_Points.empty())
+	{
+		if (m_Points.size() > 1)
+		{
+			for (int i = 0; i < m_Points.size(); i++)
+			{
+				if (m_Points[i] != m_Points.back())
+				{
+					SDL_RenderDrawLine(renderer, m_Points[i]->x, m_Points[i]->y, m_Points[i + 1]->x, m_Points[i + 1]->y);
+				}
+				
+			}
+			
+		}
 	}
 }
