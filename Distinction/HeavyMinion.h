@@ -9,6 +9,7 @@ public:
 	~HeavyMinion();
 	
 	HeavyMinion(int xPos, int yPos);
+	HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
 
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);
@@ -18,7 +19,7 @@ public:
 	void AddPath(Path* p);
 	bool AtDestination();
 	Path* GetPath() {
-		return this->m_Path;
+		return m_Path;
 	}
 
 	//calculations

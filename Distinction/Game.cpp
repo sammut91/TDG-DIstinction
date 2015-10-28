@@ -79,4 +79,18 @@ float Game::GetTimeStep()
 	return timeStep;
 }
 
+void Game::AddMinion(Minion* m)
+{
+	if (m != NULL)
+	{
+		m_Minions.push_back(m);
+	}
+}
+
+Path* Game::GetPath()
+{
+	Path* p = new Path(*m_Path);
+	return p;
+}
+
 

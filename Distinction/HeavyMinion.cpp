@@ -22,6 +22,19 @@ HeavyMinion::HeavyMinion(int xPos, int yPos)
 	m_Path = new Path();
 }
 
+HeavyMinion::HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p)
+{
+	m_Position = new Point2D(xPos, yPos);
+	m_Velocity = new Vector2D(0.0, 0.0);
+	m_Accel = new Vector2D(0.0, 0.0);
+	this->m_Width = 50;
+	this->m_Height = 50;
+	m_Texture = new LTexture();
+
+	m_Path = new Path(*p); //need to figure out how to have individual paths
+	Initialise(renderer);
+}
+
 bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true;

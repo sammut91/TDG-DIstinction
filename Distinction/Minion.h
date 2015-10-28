@@ -9,6 +9,7 @@ public:
 	~Minion();
 
 	Minion(int xPos, int yPos);
+	Minion(int xPos, int yPos, SDL_Renderer* renderer);
 
 	int GetHeight(){ return m_Height; }
 	int GetWidth(){ return m_Width; }

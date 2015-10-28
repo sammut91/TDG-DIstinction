@@ -20,6 +20,14 @@ Minion::Minion(int xPos, int yPos)
 	this->m_Velocity = new Vector2D(0.0, 0.0);
 	this->m_Accel = new Vector2D(0.0, 0.0);
 }
+Minion::Minion(int xPos, int yPos, SDL_Renderer* renderer)
+{
+	this->m_Position = new Point2D(xPos, yPos);
+	this->m_Velocity = new Vector2D(0.0, 0.0);
+	this->m_Accel = new Vector2D(0.0, 0.0);
+	Initialise(renderer);
+}
+
 
 bool Minion::Initialise(SDL_Renderer* renderer)
 {

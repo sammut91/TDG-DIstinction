@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Path.h" 
+#include "HeavyMinion.h"
 
 class PlayState :
 	public GameState

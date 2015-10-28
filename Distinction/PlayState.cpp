@@ -24,6 +24,8 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 		case SDLK_ESCAPE:
 			game->Quit();
 			break;
+		case SDLK_a:
+			game->AddMinion(game->GetSpawner()->createMinion("Heavy", r,game->GetPath()));
 		}
 
 		if (!m_Minions.empty())
@@ -59,6 +61,18 @@ void PlayState::Update(Game* game)
 			}
 		}
 	}
+
+	if (!game->GetMinions().empty())
+	{
+		for (int i = 0; i < game->GetMinions().size(); i++)
+		{
+			game->GetMinions()[i]->Update(game->GetTimeStep());
+			if (game->GetMinions()[i]->AtDestination() && game->GetMinions()[i]->GetPath()->isFinished())
+			{
+				game->m_Minions.erase(game->m_Minions.begin() + i);
+			}
+		}
+	}
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
@@ -71,6 +85,14 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	if (!m_Minions.empty())
 	{
 		for each (Minion* m in m_Minions)
+		{
+			m->Render(renderer);
+		}
+	}
+
+	if (!game->GetMinions().empty())
+	{
+		for each (Minion* m in game->GetMinions())
 		{
 			m->Render(renderer);
 		}

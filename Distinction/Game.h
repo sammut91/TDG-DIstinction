@@ -45,14 +45,20 @@ public:
 	
 	//getters
 	std::vector<Minion*> GetMinions(){return m_Minions;}
-	Path* GetPath(){ return m_Path; }
+	Path* GetPath();
 	float GetTimeStep();
+	TowerFactory* GetTowerFactory(){ return m_TowerFactory; }
+	MinionFactory* GetSpawner(){ return m_Spawner; }
 
+	void AddMinion(Minion* m);
+
+	std::vector<Minion*> m_Minions;
+	std::vector<Tower*> m_Towers;
 
 private:
 	bool m_running = true;
 	std::vector<GameState*> m_states;
-	std::vector<Minion*> m_Minions;
+	
 	Path* m_Path;
 	TowerFactory* m_TowerFactory;
 	MinionFactory* m_Spawner;
