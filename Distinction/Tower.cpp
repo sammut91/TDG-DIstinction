@@ -3,12 +3,12 @@
 
 Tower::Tower()
 {
-	m_Position = new Point2D(100.0, 100.0);
+	this->m_Position = new Point2D(100.0, 100.0);
 }
 
 Tower::Tower(std::string towerType, float xPos, float yPos)
 {
-	m_Position = new Point2D(xPos,yPos);
+	this->m_Position = new Point2D(xPos,yPos);
 }
 
 Tower::~Tower()
@@ -32,7 +32,7 @@ void Tower::Render()
 
 void Tower::Render(SDL_Renderer* r)
 {
-	m_Texture->render(m_Position->x, m_Position->y, r);
+	this->m_Texture->render(m_Position->x, m_Position->y, r);
 }
 
 void Tower::upgrade()

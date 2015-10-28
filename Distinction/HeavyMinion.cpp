@@ -37,8 +37,8 @@ bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 
 void HeavyMinion::Update(float timeStep)
 {
-	float maxForce = 100.0;
-	float maxSpeed = 100.0;
+	float maxForce = 150.0;
+	float maxSpeed = 150.0;
 	Vector2D force = CalculateForce(timeStep);
 
 	force.Truncate(maxForce);
@@ -98,7 +98,7 @@ bool HeavyMinion::Initialise()
 Vector2D HeavyMinion::Seek(Point2D* targetPos)
 {
 	Vector2D* desired_vel = (&targetPos->operator-(*m_Position));
-	desired_vel->operator*(400.0);
+	desired_vel->operator*(600.0);
 	return (desired_vel->operator-(*m_Velocity));
 
 }
@@ -108,7 +108,7 @@ Vector2D HeavyMinion::FollowPath()
 	Vector2D force;
 	if (m_Path->isFinished())
 	{	
-		if (m_Position->distance(*m_Path->currentPoint())>11)
+		if (m_Position->distance(*m_Path->currentPoint())>30)
 		{
 			return force = Seek(m_Path->currentPoint());
 		}
@@ -118,7 +118,7 @@ Vector2D HeavyMinion::FollowPath()
 	}
 	else
 	{
-		if (m_Position->distance(*m_Path->currentPoint())<10)
+		if (m_Position->distance(*m_Path->currentPoint())<30)
 		{
 			m_Path->incrementPoint();
 		}
@@ -143,7 +143,7 @@ void HeavyMinion::AddPath(Path* p)
 bool HeavyMinion::AtDestination()
 {
 	bool atDest = false;
-	if (this->m_Position->distance(*this->m_Path->getDestination())<20)
+	if (this->m_Position->distance(*this->m_Path->getDestination())<30)
 	{
 		atDest = true;
 	}
