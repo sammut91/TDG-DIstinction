@@ -75,9 +75,9 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 			m->Render(renderer);
 		}
 	}
-	if (this->m_Path != NULL)
+	if (game->GetPath() != NULL)
 	{
-		m_Path->Render(renderer);
+		game->GetPath()->Render(renderer);
 	}
 
 	SDL_RenderPresent(renderer);
@@ -85,7 +85,15 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 
 void PlayState::Initialise(SDL_Renderer* r, Game* game)
 {
-	
+	SDL_RenderClear(r);
+	m_Background = new LTexture();
+	AddMinion();
+	for each (Minion* m in m_Minions)
+	{
+		m->Initialise(r);
+		m->AddPath(game->GetPath());
+	}
+	LoadMedia(r);
 }
 
 

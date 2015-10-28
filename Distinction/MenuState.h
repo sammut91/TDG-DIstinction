@@ -9,6 +9,7 @@ class MenuState :
 public:
 	//game loop
 	void Initialise(SDL_Renderer* r);
+	void Initialise(SDL_Renderer* r, Game* game);
 	void HandleInput(Game* game, SDL_Event event, SDL_Renderer* r);
 	void Update(Game* game);
 	void Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* r);

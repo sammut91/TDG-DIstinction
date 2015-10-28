@@ -2,11 +2,11 @@
 #include <SDL.h>
 #include <vector>
 #include "Vector2D.h"
-#include "GameObjectFactory.h"
 #include "Timer.h"
 #include <sstream>
 #include "Minion.h"
 #include "HeavyMinion.h"
+#include "Path.h"
 
 class GameState;
 
@@ -41,12 +41,17 @@ public:
 	void PushState(GameState* state, SDL_Renderer* r);
 	void PopState();
 	
+	//getters
+	std::vector<Minion*> GetMinions(){return m_Minions;}
+	Path* GetPath(){ return m_Path; }
 	float GetTimeStep();
+
 
 private:
 	bool m_running = true;
-	GameObjectFactory* m_GameObjectFactory;
 	std::vector<GameState*> m_states;
+	std::vector<Minion*> m_Minions;
+	Path* m_Path;
 
 };
 

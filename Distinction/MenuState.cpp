@@ -73,6 +73,16 @@ void MenuState::Initialise(SDL_Renderer* r)
 
 }
 
+void MenuState::Initialise(SDL_Renderer* r, Game* game)
+{
+	int imfFlags = IMG_INIT_PNG;
+	m_Background = new LTexture();
+	addButton(new LButton("PlayButton.bmp", r, "play", 200, 500));
+	addButton(new LButton("HelpButton.bmp", r, "help", 800, 500));
+	LoadMedia(r);
+
+}
+
 bool MenuState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;

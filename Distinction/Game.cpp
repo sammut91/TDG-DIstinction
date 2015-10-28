@@ -14,6 +14,8 @@ Game::~Game()
 void Game::Initialise()
 {
 	m_running = true;
+	m_Path = new Path();
+	m_Path->createPath(false);
 }
 
 void Game::HandleInput(SDL_Event event, SDL_Renderer* r)
@@ -34,7 +36,7 @@ void Game::Render(SDL_Surface* surface, SDL_Window* window, SDL_Renderer* render
 void Game::PushState(GameState* state, SDL_Renderer* r)
 {
 	m_states.push_back(state);
-	m_states.back()->Initialise(r);
+	m_states.back()->Initialise(r,this);
 }
 
 //pop the last state that was used and push the state that is passed to ChangeState onto the back
@@ -45,7 +47,7 @@ void Game::ChangeState(GameState* state, SDL_Renderer* r)
 		m_states.pop_back();
 	}
 	m_states.push_back(state);
-	m_states.back()->Initialise(r);
+	m_states.back()->Initialise(r,this);
 }
 
 //if the state vector isn't empty pop the last state from the back.

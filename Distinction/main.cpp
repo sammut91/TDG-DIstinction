@@ -52,6 +52,7 @@ int main(int argc, char* args[])
 			}
 			else
 			{
+				game.Initialise();
 				game.ChangeState(MenuState::Instance(),m_Renderer);
 
 				//Get window surface

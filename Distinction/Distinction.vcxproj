@@ -82,33 +82,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="HeavyMinion.cpp" />
     <ClCompile Include="LButton.cpp" />
     <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Minion.cpp" />
+    <ClCompile Include="MinionFactory.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Tower.cpp" />
+    <ClCompile Include="TowerFactory.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HeavyMinion.h" />
     <ClInclude Include="LButton.h" />
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Minion.h" />
+    <ClInclude Include="MinionFactory.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Tower.h" />
+    <ClInclude Include="TowerFactory.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
