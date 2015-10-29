@@ -9,6 +9,9 @@ Tower::Tower()
 Tower::Tower(std::string towerType, float xPos, float yPos)
 {
 	this->m_Position = new Point2D(xPos,yPos);
+	m_BeingPlaced = true;
+	m_Selected = true;
+	m_Placed = false;
 }
 
 Tower::~Tower()
@@ -20,10 +23,18 @@ void Tower::HandleInput(SDL_Event* event)
 
 }
 
+
 void Tower::Update()
 {
 
 }
+
+void Tower::Update(int mouseX, int mouseY)
+{
+	m_Position->x = mouseX;
+	m_Position->y = mouseY;
+}
+
 
 void Tower::Render()
 {
@@ -68,6 +79,11 @@ bool Tower::Initialise(std::string objType, SDL_Renderer* renderer)
 	return success;
 }
 
+bool Tower::Initialise()
+{
+	return true;
+}
+
 bool Tower::isBeingPlaced()
 {
 	bool selected = true;
@@ -94,4 +110,25 @@ bool Tower::Initialise(std::string objType)
 	bool success = true;
 
 	return success;
+}
+
+void Tower::setBeingPlaced(bool beingPlaced)
+{
+	m_BeingPlaced = beingPlaced;
+}
+
+void Tower::setPlaced(bool setPlaced)
+{
+	m_Placed = setPlaced;
+}
+
+void Tower::setSelected(bool selected)
+{
+	m_Selected = selected;
+}
+
+void Tower::SetPosition(int xPos, int yPos)
+{
+	m_Position->x = xPos;
+	m_Position->y = yPos;
 }

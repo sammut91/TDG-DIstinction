@@ -32,5 +32,7 @@ private:
 	Path* m_Path;
 	LTexture* m_TimeDisplay;
 	std::stringstream m_Time;
+	int mouseXPos = 0;
+	int mouseYPos = 0;
 	
 };

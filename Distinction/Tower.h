@@ -21,6 +21,7 @@ public:
 
 	//SDL Draw and update
 	void Update();
+	void Update(int mouseX, int mouseY);
 	void HandleInput(SDL_Event* event);
 	void Render();
 	void Render(SDL_Renderer* r);
@@ -34,21 +35,31 @@ public:
 	void upgrade();
 
 	//load the tower sprite and initialisation features
+	bool Initialise();
 	bool Initialise(std::string objType);
 	//init with renderer
 	bool Initialise(std::string objType, SDL_Renderer* renderer);
 
 	//checks for the clicks or placements of towers
-	bool isSelected();
+	bool isSelected();	
 	bool isBeingPlaced();
 	bool isPlaced();
 
+	void setSelected(bool selected);
+	void setBeingPlaced(bool beingPlaced);
+	void setPlaced(bool placed);
+
+	//position of tower
+	void SetPosition(int xPos, int yPos);
 
 private:
 	//member values for each tower
 	float m_Cost= 0, m_Range =0;
 	std::string objType;
 	Point2D* m_Position;
+	bool m_BeingPlaced;
+	bool m_Selected;
+	bool m_Placed;
 	LTexture* m_Texture;
 };
 

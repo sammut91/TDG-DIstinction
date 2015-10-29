@@ -13,6 +13,12 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	{
 		game->Quit();
 	}
+
+	if (event.type == SDL_MOUSEMOTION)
+	{
+		Uint32 mouse = SDL_GetMouseState(&mouseXPos, &mouseYPos);
+
+	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		std::stringstream timeText;
@@ -37,6 +43,22 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	{
 
 	}
+
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (!game->m_Towers.empty())
+		{
+			for each (Tower* t in game->m_Towers)
+			{
+				if (t->isBeingPlaced() && t->isSelected())
+				{
+					t->setPlaced(true);
+					t->setBeingPlaced(false);
+					t->setSelected(false);
+				}
+			}
+		}
+	}
 }
 
 void PlayState::Update(Game* game)
@@ -48,6 +70,7 @@ void PlayState::Update(Game* game)
 		game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
 	}
 
+	//update the minions
 	if (!game->GetMinions().empty())
 	{
 		for (int i = 0; i < game->GetMinions().size(); i++)
@@ -59,6 +82,23 @@ void PlayState::Update(Game* game)
 			}
 		}
 	}
+
+	//update the towers
+	if (!game->m_Towers.empty())
+	{
+		for each (Tower* tower in game->m_Towers)
+		{
+			if (tower->isBeingPlaced())
+			{
+				tower->Update(mouseXPos, mouseYPos);
+			}
+			else
+			{
+				tower->Update();
+			}
+		}
+	}
+
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
@@ -88,6 +128,14 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	if (m_TimeDisplay != NULL)
 	{
 		m_TimeDisplay->render(800, 50, renderer);
+	}
+
+	if (!game->m_Towers.empty())
+	{
+		for each (Tower* tower in game->m_Towers)
+		{
+			tower->Render(renderer);
+		}
 	}
 
 	SDL_RenderPresent(renderer);
