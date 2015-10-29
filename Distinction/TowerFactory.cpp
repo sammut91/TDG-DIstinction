@@ -10,9 +10,9 @@ TowerFactory::~TowerFactory()
 {
 }
 
-void TowerFactory::createTower()
+Tower* TowerFactory::createTower(std::string type, SDL_Renderer* renderer)
 {
-
+	return new Tower(renderer);
 }
 
 void TowerFactory::cleanup()

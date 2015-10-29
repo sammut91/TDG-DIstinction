@@ -14,9 +14,9 @@ class Tower :
 	public GameObject
 {
 public:
-	Tower();
+	Tower(SDL_Renderer* renderer);
 
-	Tower(std::string towerType, float xPos, float yPos);
+	Tower(std::string towerType, float xPos, float yPos,SDL_Renderer* renderer);
 	~Tower();
 
 	//SDL Draw and update
@@ -36,14 +36,13 @@ public:
 
 	//load the tower sprite and initialisation features
 	bool Initialise();
-	bool Initialise(std::string objType);
 	//init with renderer
-	bool Initialise(std::string objType, SDL_Renderer* renderer);
+	bool Initialise(SDL_Renderer* renderer);
 
 	//checks for the clicks or placements of towers
-	bool isSelected();	
-	bool isBeingPlaced();
-	bool isPlaced();
+	bool isSelected() { return m_Selected; };
+	bool isBeingPlaced(){ return m_BeingPlaced; };
+	bool isPlaced(){ return m_Placed; };
 
 	void setSelected(bool selected);
 	void setBeingPlaced(bool beingPlaced);

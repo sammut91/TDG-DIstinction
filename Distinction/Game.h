@@ -60,6 +60,9 @@ public:
 	void SpawnMinion(std::vector<Minion*>);
 	void AddMinion(Minion* m);
 
+	//tower control
+	void AddTower(Tower* t);
+
 	std::vector<Minion*> m_Minions;
 	std::vector<Tower*> m_Towers;
 

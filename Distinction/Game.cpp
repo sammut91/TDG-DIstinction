@@ -100,6 +100,14 @@ void Game::AddMinion(Minion* m)
 	}
 }
 
+void Game::AddTower(Tower* t)
+{
+	if (t != NULL)
+	{
+		m_Towers.push_back(t);
+	}
+}
+
 std::vector<Minion*> Game::SpawnWave(int minionAmount)
 {
 	std::vector<Minion*> wave;

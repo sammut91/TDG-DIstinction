@@ -1,17 +1,24 @@
 #include "Tower.h"
 
 
-Tower::Tower()
+Tower::Tower(SDL_Renderer* renderer)
 {
 	this->m_Position = new Point2D(100.0, 100.0);
+	this->m_BeingPlaced = true;
+	this->m_Selected = true;
+	this->m_Texture = new LTexture();
+	this->m_Placed = false;
+	Initialise(renderer);
 }
 
-Tower::Tower(std::string towerType, float xPos, float yPos)
+Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer)
 {
 	this->m_Position = new Point2D(xPos,yPos);
-	m_BeingPlaced = true;
-	m_Selected = true;
-	m_Placed = false;
+	this->m_BeingPlaced = true;
+	this->m_Selected = true;
+	this->m_Texture = new LTexture();
+	this->m_Placed = false;
+	Initialise(renderer);
 }
 
 Tower::~Tower()
@@ -66,7 +73,7 @@ bool Tower::hasTarget()
 	return false;
 }
 
-bool Tower::Initialise(std::string objType, SDL_Renderer* renderer)
+bool Tower::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true;
 	//load the towers sprite from the file
@@ -82,34 +89,6 @@ bool Tower::Initialise(std::string objType, SDL_Renderer* renderer)
 bool Tower::Initialise()
 {
 	return true;
-}
-
-bool Tower::isBeingPlaced()
-{
-	bool selected = true;
-
-	return selected;
-}
-
-bool Tower::isSelected()
-{
-	bool selected = true;
-
-	return selected;
-}
-
-bool Tower::isPlaced()
-{
-	bool placed = true;
-
-	return placed;
-}
-
-bool Tower::Initialise(std::string objType)
-{
-	bool success = true;
-
-	return success;
 }
 
 void Tower::setBeingPlaced(bool beingPlaced)

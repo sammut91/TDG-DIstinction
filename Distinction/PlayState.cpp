@@ -37,6 +37,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			break;
 		case SDLK_a:
 			game->AddMinion(game->GetSpawner()->createMinion("Heavy", r,game->GetPath()));
+			game->AddTower(game->GetTowerFactory()->createTower("", r));
 		}
 	}
 	if (event.type == SDL_KEYUP)
