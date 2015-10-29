@@ -31,7 +31,9 @@ HeavyMinion::HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p)
 	this->m_Height = 50;
 	m_Texture = new LTexture();
 
-	m_Path = new Path(*p); //need to figure out how to have individual paths
+	//creates a new path for each minion that is the same as the main path
+	//so they dont all follow the same path
+	m_Path = new Path(*p); 
 	Initialise(renderer);
 }
 

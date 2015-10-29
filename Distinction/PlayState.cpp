@@ -15,6 +15,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	}
 	if (event.type == SDL_KEYDOWN)
 	{
+		std::stringstream timeText;
 		switch (event.key.keysym.sym)
 		{
 		case SDLK_b:
@@ -23,43 +24,28 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			break;
 		case SDLK_ESCAPE:
 			game->Quit();
+		case SDLK_t:
+			timeText.str("");
+			timeText << (game->m_Timer.getTicks() / 1000.f);
+			std::cout << timeText.str() << std::endl;
 			break;
 		case SDLK_a:
 			game->AddMinion(game->GetSpawner()->createMinion("Heavy", r,game->GetPath()));
 		}
-
-		if (!m_Minions.empty())
-		{
-			for each (Minion* m in m_Minions)
-			{
-				m->HandleInput(&event);
-			}
-		}
 	}
 	if (event.type == SDL_KEYUP)
 	{
-		if (!m_Minions.empty())
-		{
-			for each (Minion* m in m_Minions)
-			{
-				m->HandleInput(&event);
-			}
-		}
+
 	}
 }
 
 void PlayState::Update(Game* game)
 {
-	if (!m_Minions.empty())
+	UpdateTime(game);
+	float time = (abs(30 - (game->m_TimerDisplay.getTicks() / 1000.0f)));
+	if (time == 30.000000 || time == 28.000000 || time == 26.000000 || time == 24.000000)
 	{
-		for (int i = 0; i < m_Minions.size(); i++)
-		{
-			m_Minions[i]->Update(game->GetTimeStep());
-			if (m_Minions[i]->AtDestination() && m_Minions[i]->GetPath()->isFinished())
-			{
-				m_Minions.erase(m_Minions.begin() + i);
-			}
-		}
+		game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
 	}
 
 	if (!game->GetMinions().empty())
@@ -77,18 +63,11 @@ void PlayState::Update(Game* game)
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
 {
-	
+	SDL_Color textColor = { 0, 0, 0 };
 	SDL_Rect bGround = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	m_Background->render(0, 0, renderer, &bGround);
 	SDL_FillRect(surface, NULL, 0x0066FF);
 	//SDL_UpdateWindowSurface(window);
-	if (!m_Minions.empty())
-	{
-		for each (Minion* m in m_Minions)
-		{
-			m->Render(renderer);
-		}
-	}
 
 	if (!game->GetMinions().empty())
 	{
@@ -102,6 +81,15 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 		game->GetPath()->Render(renderer);
 	}
 
+	if (!m_TimeDisplay->loadFromRenderedText(m_Time.str(), textColor, renderer, game->getFont()))
+	{
+		printf("Failed to render text texture!\n");
+	}
+	if (m_TimeDisplay != NULL)
+	{
+		m_TimeDisplay->render(800, 50, renderer);
+	}
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -109,12 +97,7 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 {
 	SDL_RenderClear(r);
 	m_Background = new LTexture();
-	AddMinion();
-	for each (Minion* m in m_Minions)
-	{
-		m->Initialise(r);
-		m->AddPath(game->GetPath());
-	}
+	m_TimeDisplay = new LTexture();
 	LoadMedia(r);
 }
 
@@ -125,12 +108,6 @@ void PlayState::Initialise(SDL_Renderer* r)
 	m_Path = new Path();
 	m_Path->createPath(false);
 	m_Background = new LTexture();
-	AddMinion();
-	for each (Minion* m in m_Minions)
-	{
-		m->Initialise(r);
-		m->AddPath(m_Path);
-	}
 	LoadMedia(r);
 }
 
@@ -142,10 +119,17 @@ bool PlayState::LoadMedia(SDL_Renderer* r)
 		printf("Failed to load background sprite texture!\n");
 		success = false;
 	}
+	
 	return success;
 }
 
-void PlayState::AddMinion()
+void PlayState::UpdateTime(Game* game)
 {
-	m_Minions.push_back(new HeavyMinion());
+	if ((game->m_TimerDisplay.getTicks() / 1000.f) > 30.0)
+	{
+		game->m_TimerDisplay.start();
+	}
+	m_Time.str("");
+	float time = abs(31-(game->m_TimerDisplay.getTicks() / 1000.f));
+	m_Time << time;
 }

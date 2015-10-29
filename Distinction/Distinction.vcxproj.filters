@@ -120,4 +120,7 @@
     <Image Include="PlayScreen.bmp" />
     <Image Include="BlueBlob.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="AlexandriaFLF.ttf" />
+  </ItemGroup>
 </Project>

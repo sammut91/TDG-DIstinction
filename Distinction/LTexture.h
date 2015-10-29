@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 
@@ -17,7 +18,7 @@ public:
 
 #ifdef _SDL_TTF_H
 	//Creates image from font string
-	bool loadFromRenderedText(std::string textureText, SDL_Color textColor);
+	bool loadFromRenderedText(std::string textureText, SDL_Color textColor, SDL_Renderer* renderer, TTF_Font* font);
 #endif
 
 	//Deallocates texture

@@ -18,6 +18,7 @@ void Game::Initialise()
 	m_Path->createPath(false);
 	m_Spawner = new MinionFactory();
 	m_TowerFactory = new TowerFactory();
+	LoadMedia();
 }
 
 void Game::HandleInput(SDL_Event event, SDL_Renderer* r)
@@ -67,12 +68,24 @@ bool Game::LoadMedia()
 	bool success = true;
 
 	//load media files here
-	Vector2D *loc = new Vector2D();
+	m_Font = TTF_OpenFont("AlexandriaFLF.ttf", 25);
+	if (m_Font == NULL)
+	{
+		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+		success = false;
+	}
 
 	return success;
 }
 
 float Game::GetTimeStep()
+{
+	float timeStep = 0.0;
+	timeStep = m_Timer.getTicks() / 1000.0;
+	return timeStep;
+}
+
+float Game::GetTimeDisplayStep()
 {
 	float timeStep = 0.0;
 	timeStep = m_Timer.getTicks() / 1000.0;
@@ -87,10 +100,35 @@ void Game::AddMinion(Minion* m)
 	}
 }
 
+std::vector<Minion*> Game::SpawnWave(int minionAmount)
+{
+	std::vector<Minion*> wave;
+	for (int i = 0; i < minionAmount; i++)
+	{
+		wave.push_back(m_Spawner->createMinion("Heavy", m_Renderer, GetPath()));
+	}	
+	return wave;
+}
+
+
+//finish the math behind spawning at intervals of 1 or 2 seconds
+void Game::SpawnMinion(std::vector<Minion*> wave)
+{
+	for (int i = 0; i < wave.size(); i++)
+	{
+
+	}
+}
+
 Path* Game::GetPath()
 {
 	Path* p = new Path(*m_Path);
 	return p;
+}
+
+void Game::SetRenderer(SDL_Renderer* r)
+{
+	m_Renderer = r;
 }
 
 

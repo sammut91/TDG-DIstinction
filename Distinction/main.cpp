@@ -16,6 +16,7 @@ int main(int argc, char* args[])
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	Game game;
+	game.m_TimerDisplay.start();
 	//game.m_Timer.start();
 	//event handler
 	SDL_Event event;
@@ -46,9 +47,14 @@ int main(int argc, char* args[])
 			{
 				printf("Failed to load Renderer");
 			}
+			game.SetRenderer(m_Renderer);
 			if (!game.LoadMedia())
 			{
 				printf("Failed to load media");
+			}
+			if (TTF_Init() == -1)
+			{
+				printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 			}
 			else
 			{

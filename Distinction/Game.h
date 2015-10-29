@@ -31,11 +31,15 @@ public:
 		m_running = false;
 	}
 
+	TTF_Font* getFont(){ return m_Font; }
+
 	//timing for the game
 	Timer m_Timer;
+	Timer m_TimerDisplay;
 
 	//media contol load all media here
 	bool LoadMedia();
+	SDL_Renderer* GetRenderer(){ return m_Renderer;}
 	void SetRenderer(SDL_Renderer* renderer);
 
 	//state management
@@ -47,9 +51,13 @@ public:
 	std::vector<Minion*> GetMinions(){return m_Minions;}
 	Path* GetPath();
 	float GetTimeStep();
+	float GetTimeDisplayStep();
 	TowerFactory* GetTowerFactory(){ return m_TowerFactory; }
 	MinionFactory* GetSpawner(){ return m_Spawner; }
 
+	//wave control
+	std::vector<Minion*> SpawnWave(int minionAmount);
+	void SpawnMinion(std::vector<Minion*>);
 	void AddMinion(Minion* m);
 
 	std::vector<Minion*> m_Minions;
@@ -62,6 +70,9 @@ private:
 	Path* m_Path;
 	TowerFactory* m_TowerFactory;
 	MinionFactory* m_Spawner;
+	TTF_Font* m_Font;
+	SDL_Renderer* m_Renderer;
+	
 
 };
 
