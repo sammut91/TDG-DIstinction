@@ -19,6 +19,7 @@ void Game::Initialise()
 	m_Spawner = new MinionFactory();
 	m_TowerFactory = new TowerFactory();
 	LoadMedia();
+
 }
 
 void Game::HandleInput(SDL_Event event, SDL_Renderer* r)
@@ -88,7 +89,7 @@ float Game::GetTimeStep()
 float Game::GetTimeDisplayStep()
 {
 	float timeStep = 0.0;
-	timeStep = m_Timer.getTicks() / 1000.0;
+	timeStep = (m_Timer.getTicks() / 1000.0);
 	return timeStep;
 }
 
@@ -128,6 +129,35 @@ void Game::SpawnMinion(std::vector<Minion*> wave)
 	}
 }
 
+bool Game::HasSpawned(float timeStep)
+{
+	bool spawned = false;
+	//upper and lower limit of spawning 
+	if (!(timeStep <= 5.0 || timeStep >= 25.0))
+	{
+		if (!((m_SpawnTimer - timeStep) > m_SpawnDelay))
+		{
+			return spawned = false;
+		}
+		m_SpawnTimer = timeStep;
+		if (m_SpawnTimer < m_SpawnDelay)
+		{
+			m_SpawnTimer = timeStep;
+		}
+		return spawned = true;
+	}
+	else if (timeStep <=5.0)
+	{
+		m_SpawnTimer = 30.0;
+	}
+	return spawned;
+	
+}
+
+void Game::SetSpawnDelay(float spawnDelay)
+{
+	m_SpawnDelay = spawnDelay;
+}
 Path* Game::GetPath()
 {
 	Path* p = new Path(*m_Path);

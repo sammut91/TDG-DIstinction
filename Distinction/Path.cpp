@@ -32,14 +32,14 @@ void Path::createPath(bool looped)
 	m_Looped = looped;
 
 	m_Points.push_back(new Point2D(100, 100));
-	m_Points.push_back(new Point2D(100, 700));
-	m_Points.push_back(new Point2D(500, 700));
-	m_Points.push_back(new Point2D(500, 100));
-	m_Points.push_back(new Point2D(900, 100));
-	m_Points.push_back(new Point2D(900, 700));
-	m_Points.push_back(new Point2D(1300, 700));
-	m_Points.push_back(new Point2D(1300, 100));
-	m_Points.push_back(new Point2D(1400, 100));
+	m_Points.push_back(new Point2D(100, 600));
+	m_Points.push_back(new Point2D(500, 600));
+	m_Points.push_back(new Point2D(500, 200));
+	m_Points.push_back(new Point2D(900, 200));
+	m_Points.push_back(new Point2D(900, 600));
+	m_Points.push_back(new Point2D(1300, 600));
+	m_Points.push_back(new Point2D(1300, 200));
+	m_Points.push_back(new Point2D(1400, 200));
 
 }
 

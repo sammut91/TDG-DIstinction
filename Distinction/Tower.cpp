@@ -1,6 +1,5 @@
 #include "Tower.h"
 
-
 Tower::Tower(SDL_Renderer* renderer)
 {
 	this->m_Position = new Point2D(100.0, 100.0);
@@ -11,6 +10,17 @@ Tower::Tower(SDL_Renderer* renderer)
 	Initialise(renderer);
 }
 
+Tower::Tower(SDL_Renderer* renderer, float timer)
+{
+	this->m_Position = new Point2D(100.0, 100.0);
+	this->m_BeingPlaced = true;
+	this->m_Selected = true;
+	this->m_Texture = new LTexture();
+	this->m_Placed = false;
+	Initialise(renderer);
+	m_FireTimer = timer;
+}
+
 Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer)
 {
 	this->m_Position = new Point2D(xPos,yPos);
@@ -19,6 +29,17 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
 	Initialise(renderer);
+}
+
+Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer, float timer)
+{
+	this->m_Position = new Point2D(xPos, yPos);
+	this->m_BeingPlaced = true;
+	this->m_Selected = true;
+	this->m_Texture = new LTexture();
+	this->m_Placed = false;
+	Initialise(renderer);
+	m_FireTimer = timer;
 }
 
 Tower::~Tower()
@@ -60,6 +81,20 @@ void Tower::upgrade()
 
 void Tower::fire()
 {
+
+}
+
+//control how fast the tower fires its projectiles
+bool Tower::hasFired(float timeStep)
+{
+	bool fired = true;
+	if (!((m_FireTimer - timeStep) > m_FireRate)) //if the time between is greater than the fire rate return false
+	{
+		return fired = false;
+	}
+	//if it is less then set the fire timer to the current time and fire return true
+	m_FireTimer = timeStep;
+	return fired;
 
 }
 
@@ -110,4 +145,9 @@ void Tower::SetPosition(int xPos, int yPos)
 {
 	m_Position->x = xPos;
 	m_Position->y = yPos;
+}
+
+void Tower::SetRange(float range)
+{
+	m_Range = range;
 }

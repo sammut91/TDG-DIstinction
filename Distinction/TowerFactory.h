@@ -6,7 +6,7 @@ public:
 	TowerFactory();
 	~TowerFactory();
 
-	Tower* createTower(std::string type, SDL_Renderer* renderer);
+	Tower* createTower(std::string type, SDL_Renderer* renderer,float timeStep);
 
 	void cleanup();
 };

@@ -36,8 +36,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			std::cout << timeText.str() << std::endl;
 			break;
 		case SDLK_a:
-			game->AddMinion(game->GetSpawner()->createMinion("Heavy", r,game->GetPath()));
-			game->AddTower(game->GetTowerFactory()->createTower("", r));
+			game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
 		}
 	}
 	if (event.type == SDL_KEYUP)
@@ -66,7 +65,7 @@ void PlayState::Update(Game* game)
 {
 	UpdateTime(game);
 	float time = (abs(30 - (game->m_TimerDisplay.getTicks() / 1000.0f)));
-	if (time == 30.000000 || time == 28.000000 || time == 26.000000 || time == 24.000000)
+	if (game->HasSpawned(time))
 	{
 		game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
 	}
@@ -91,7 +90,7 @@ void PlayState::Update(Game* game)
 		{
 			if (tower->isBeingPlaced())
 			{
-				tower->Update(mouseXPos, mouseYPos);
+				tower->Update(mouseXPos-25, mouseYPos-25);
 			}
 			else
 			{
@@ -119,7 +118,7 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	}
 	if (game->GetPath() != NULL)
 	{
-		game->GetPath()->Render(renderer);
+		//game->GetPath()->Render(renderer);
 	}
 
 	if (!m_TimeDisplay->loadFromRenderedText(m_Time.str(), textColor, renderer, game->getFont()))

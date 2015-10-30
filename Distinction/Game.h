@@ -59,6 +59,9 @@ public:
 	std::vector<Minion*> SpawnWave(int minionAmount);
 	void SpawnMinion(std::vector<Minion*>);
 	void AddMinion(Minion* m);
+	bool HasSpawned(float timeStep);
+	float SpawnDelay(){ return m_SpawnDelay; }
+	void SetSpawnDelay(float spawnDelay);
 
 	//tower control
 	void AddTower(Tower* t);
@@ -76,6 +79,7 @@ private:
 	TTF_Font* m_Font;
 	SDL_Renderer* m_Renderer;
 	
+	float m_SpawnDelay= 1.0, m_SpawnTimer = 31.0;
 
 };
 

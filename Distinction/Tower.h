@@ -15,8 +15,9 @@ class Tower :
 {
 public:
 	Tower(SDL_Renderer* renderer);
-
-	Tower(std::string towerType, float xPos, float yPos,SDL_Renderer* renderer);
+	Tower(SDL_Renderer* renderer, float timer);
+	Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer);
+	Tower(std::string towerType, float xPos, float yPos,SDL_Renderer* renderer, float timer);
 	~Tower();
 
 	//SDL Draw and update
@@ -30,6 +31,7 @@ public:
 	void getTarget();
 	bool hasTarget();
 	void fire();
+	bool hasFired(float timeStep);
 
 	//upgrade the tower
 	void upgrade();
@@ -51,9 +53,17 @@ public:
 	//position of tower
 	void SetPosition(int xPos, int yPos);
 
+	//get and set the range and cost
+	float Range(){ return m_Range; }
+	void SetRange(float range);
+	float Cost(){ return m_Cost; }
+	void SetCost(float cost);
+	float FireRate(){ return m_FireRate; }
+
+	float m_FireTimer = 0.0;
 private:
 	//member values for each tower
-	float m_Cost= 0, m_Range =0;
+	float m_Cost= 0.0, m_Range =0.0, m_FireRate = 0.0;
 	std::string objType;
 	Point2D* m_Position;
 	bool m_BeingPlaced;

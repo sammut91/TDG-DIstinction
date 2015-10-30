@@ -10,9 +10,9 @@ TowerFactory::~TowerFactory()
 {
 }
 
-Tower* TowerFactory::createTower(std::string type, SDL_Renderer* renderer)
+Tower* TowerFactory::createTower(std::string type, SDL_Renderer* renderer, float timeStep)
 {
-	return new Tower(renderer);
+	return new Tower(renderer,timeStep);
 }
 
 void TowerFactory::cleanup()
