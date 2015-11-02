@@ -124,6 +124,7 @@
     <Image Include="BuildIcon.bmp" />
     <Image Include="CancelButton.bmp" />
     <Image Include="GreenBlob.bmp" />
+    <Image Include="GreenBullet.png" />
     <Image Include="HelpButton.bmp" />
     <Image Include="LaserIcon.bmp" />
     <Image Include="MenuScreen.bmp" />

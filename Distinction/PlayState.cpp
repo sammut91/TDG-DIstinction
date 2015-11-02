@@ -102,13 +102,17 @@ void PlayState::Update(Game* game)
 
 			if (tower->isPlaced())
 			{
+				//update the projectiles
+				if (!tower->isLoaded())
+				{
+					tower->AddProjectiles(game->GetRenderer());
+				}
 				tower->getTarget(game->GetMinions());
-				tower->fire();
-				tower->AddProjectiles(game->GetRenderer());
 				if (!tower->GetProjectiles().empty())
 				{
 					for each (Projectile* p in tower->GetProjectiles())
 					{
+						p->Update(game->GetTimeStep());
 					}
 				}
 			}
@@ -150,6 +154,16 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 		for each (Tower* tower in game->m_Towers)
 		{
 			tower->Render(renderer);
+			if (!tower->GetProjectiles().empty())
+			{
+				for each (Projectile* projectile in tower->GetProjectiles())
+				{
+					if (projectile->isActive())
+					{
+						projectile->Render(renderer);
+					}					
+				}
+			}
 		}
 	}
 

@@ -12,7 +12,7 @@ Tower::Tower(SDL_Renderer* renderer)
 
 Tower::Tower(SDL_Renderer* renderer, float timer)
 {
-	m_Target = new Minion();
+	m_Target = NULL;
 	this->m_Position = new Point2D(100.0, 100.0);
 	this->m_BeingPlaced = true;
 	this->m_Selected = true;
@@ -34,8 +34,7 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 
 Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer, float timer)
 {
-	m_Target = new Minion();
-
+	m_Target = NULL;
 	this->m_Position = new Point2D(xPos, yPos);
 	this->m_BeingPlaced = true;
 	this->m_Selected = true;
@@ -111,8 +110,16 @@ void Tower::getTarget(std::vector<Minion*> targets)
 		{
 			if (this->m_Position->distance(*target->GetPosition()) < Range())
 			{
-				hasTarget = true;
 				m_Target = target;
+				hasTarget = true;
+				if (!m_Projectiles.empty())
+				{
+					for each (Projectile* p in m_Projectiles)
+					{
+						p->SetTarget(m_Target);
+					}
+				}
+				break;
 			}
 		}
 	}
@@ -171,5 +178,6 @@ void Tower::AddProjectiles(SDL_Renderer* r)
 			m_Projectiles.push_back(new Projectile(this->m_Position->x, this->m_Position->y,
 				r, this->Range()));
 		}
+		loadAmmo = true;
 	}
 }

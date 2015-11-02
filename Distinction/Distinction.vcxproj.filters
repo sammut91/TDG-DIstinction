@@ -125,6 +125,7 @@
     <Image Include="YellowBlob.bmp" />
     <Image Include="PlayScreen.bmp" />
     <Image Include="BlueBlob.png" />
+    <Image Include="GreenBullet.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="AlexandriaFLF.ttf" />

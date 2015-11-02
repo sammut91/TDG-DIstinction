@@ -35,6 +35,7 @@ public:
 	bool hasFired(float timeStep);
 	std::vector<Projectile*> GetProjectiles(){ return m_Projectiles; }
 	void AddProjectiles(SDL_Renderer* renderer);
+	bool isLoaded(){ return loadAmmo; }
 
 	//upgrade the tower
 	void upgrade();
@@ -75,6 +76,7 @@ private:
 	bool m_BeingPlaced;
 	bool m_Selected;
 	bool m_Placed;
+	bool loadAmmo = false;
 	LTexture* m_Texture;
 };
 
