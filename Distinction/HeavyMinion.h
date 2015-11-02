@@ -22,7 +22,10 @@ public:
 		return m_Path;
 	}
 
+	Point2D* GetPosition(){ return this->m_Position; }
+
 	//calculations
+	float MaxForce = 150.0, MaxSpeed = 150.0;
 	Vector2D CalculateForce(float timeStep);
 	Vector2D Seek(Point2D* targetPos);
 	Vector2D FollowPath();

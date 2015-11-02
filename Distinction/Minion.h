@@ -14,6 +14,8 @@ public:
 	int GetHeight(){ return m_Height; }
 	int GetWidth(){ return m_Width; }
 
+	virtual Point2D* GetPosition(){ return this->m_Position; }
+	virtual Vector2D* GetVelocity(){ return this->m_Velocity; }
 	void setPosition(int x, int y);
 	void setSize(int x, int y);
 	void setVelocity(float xVel, float yVel);
@@ -43,6 +45,7 @@ public:
 	bool isAlive();
 
 	//force calculations
+	float MaxForce = 150.0, MaxSpeed = 150.0;
 	virtual Vector2D CalculateForce(float timeStep);
 	virtual Vector2D Seek(Point2D* targetPos);
 

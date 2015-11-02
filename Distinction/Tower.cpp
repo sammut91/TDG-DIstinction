@@ -12,6 +12,7 @@ Tower::Tower(SDL_Renderer* renderer)
 
 Tower::Tower(SDL_Renderer* renderer, float timer)
 {
+	m_Target = new Minion();
 	this->m_Position = new Point2D(100.0, 100.0);
 	this->m_BeingPlaced = true;
 	this->m_Selected = true;
@@ -33,6 +34,8 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 
 Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer, float timer)
 {
+	m_Target = new Minion();
+
 	this->m_Position = new Point2D(xPos, yPos);
 	this->m_BeingPlaced = true;
 	this->m_Selected = true;
@@ -81,7 +84,9 @@ void Tower::upgrade()
 
 void Tower::fire()
 {
-
+	if (m_Placed && hasTarget)
+	{
+	}
 }
 
 //control how fast the tower fires its projectiles
@@ -98,14 +103,19 @@ bool Tower::hasFired(float timeStep)
 
 }
 
-void Tower::getTarget()
+void Tower::getTarget(std::vector<Minion*> targets)
 {
-
-}
-
-bool Tower::hasTarget()
-{
-	return false;
+	if (!targets.empty())
+	{
+		for each (Minion* target in targets)
+		{
+			if (this->m_Position->distance(*target->GetPosition()) < Range())
+			{
+				hasTarget = true;
+				m_Target = target;
+			}
+		}
+	}
 }
 
 bool Tower::Initialise(SDL_Renderer* renderer)
@@ -150,4 +160,16 @@ void Tower::SetPosition(int xPos, int yPos)
 void Tower::SetRange(float range)
 {
 	m_Range = range;
+}
+
+void Tower::AddProjectiles(SDL_Renderer* r)
+{
+	if (m_Placed)
+	{
+		for (int i = 0; i < ClipSize; i++)
+		{
+			m_Projectiles.push_back(new Projectile(this->m_Position->x, this->m_Position->y,
+				r, this->Range()));
+		}
+	}
 }

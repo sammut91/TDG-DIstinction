@@ -9,6 +9,7 @@ The Tower class
 #include "GameObject.h"
 #include <SDL.h>
 #include <vector>
+#include "Projectile.h"
 
 class Tower :
 	public GameObject
@@ -28,10 +29,12 @@ public:
 	void Render(SDL_Renderer* r);
 
 	//tower target aquisition
-	void getTarget();
-	bool hasTarget();
+	void getTarget(std::vector<Minion*> targets);
+	bool hasTarget = false;
 	void fire();
 	bool hasFired(float timeStep);
+	std::vector<Projectile*> GetProjectiles(){ return m_Projectiles; }
+	void AddProjectiles(SDL_Renderer* renderer);
 
 	//upgrade the tower
 	void upgrade();
@@ -40,7 +43,7 @@ public:
 	bool Initialise();
 	//init with renderer
 	bool Initialise(SDL_Renderer* renderer);
-
+	int ClipSize = 5;
 	//checks for the clicks or placements of towers
 	bool isSelected() { return m_Selected; };
 	bool isBeingPlaced(){ return m_BeingPlaced; };
@@ -63,7 +66,10 @@ public:
 	float m_FireTimer = 0.0;
 private:
 	//member values for each tower
-	float m_Cost= 0.0, m_Range =0.0, m_FireRate = 0.0;
+	float m_Cost= 0.0, m_Range = 400.0, m_FireRate = 0.0;
+	//ammo clip
+	std::vector<Projectile*> m_Projectiles;
+	Minion* m_Target;
 	std::string objType;
 	Point2D* m_Position;
 	bool m_BeingPlaced;

@@ -43,16 +43,15 @@ bool Minion::Initialise(SDL_Renderer* renderer)
 
 void Minion::Update(float timeStep)
 {
-	float maxForce = 1.0;
-	float maxSpeed = 1.0;
+
 	Vector2D force = CalculateForce(timeStep);
 
-	force.Truncate(maxForce);
+	force.Truncate(MaxForce);
 	this->m_Accel = &force;
 
 	this->m_Velocity->operator+=(m_Accel->operator*(timeStep));
 
-	this->m_Velocity->Truncate(maxSpeed);
+	this->m_Velocity->Truncate(MaxSpeed);
 
 	if (!(this->m_Accel->operator==(Point2D(0.0, 0.0))))
 	{

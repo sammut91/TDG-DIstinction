@@ -27,3 +27,8 @@ Vector2D& Vector2D::Truncate(float maxLength)
 	}
 	return (*this);
 }
+
+float Vector2D::Length()
+{
+	return sqrt((x*x)+(y*y));
+}

@@ -122,6 +122,8 @@ public:
 	Vector2D& Rotate(float angle);
 
 	Vector2D& Truncate(float maxLength);
+
+	float Length();
 };
 
 
