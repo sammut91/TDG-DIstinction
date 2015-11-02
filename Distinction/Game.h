@@ -24,12 +24,11 @@ public:
 	void Update();
 	void Render(SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer);
 
-	bool Running(){
-		return m_running;
-	}
-	void Quit(){
-		m_running = false;
-	}
+	//running and pause controls
+	bool Running(){ return m_running; }
+	void Quit(){ m_running = false; }
+	bool isPaused() { return m_Paused; }
+	void Pause();
 
 	TTF_Font* getFont(){ return m_Font; }
 
@@ -70,7 +69,7 @@ public:
 	std::vector<Tower*> m_Towers;
 
 private:
-	bool m_running = true;
+	bool m_running = true, m_Paused = false;
 	std::vector<GameState*> m_states;
 	
 	Path* m_Path;

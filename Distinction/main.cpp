@@ -74,7 +74,11 @@ int main(int argc, char* args[])
 					{
 						game.HandleInput(event,m_Renderer);
 					}
-					game.Update();
+					//check of the game is paused or not
+					if (!game.isPaused()) 
+					{
+						game.Update();
+					}		
 					game.m_Timer.start();
 					game.Render(screenSurface,window,m_Renderer);
 					

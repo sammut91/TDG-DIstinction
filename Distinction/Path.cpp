@@ -39,7 +39,6 @@ void Path::createPath(bool looped)
 	m_Points.push_back(new Point2D(900, 600));
 	m_Points.push_back(new Point2D(1300, 600));
 	m_Points.push_back(new Point2D(1300, 200));
-	m_Points.push_back(new Point2D(1400, 200));
 
 }
 

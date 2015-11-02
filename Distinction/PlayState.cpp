@@ -28,6 +28,9 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			game->PopState();
 			printf("Back to the menu");
 			break;
+		case SDLK_p:
+			game->Pause();
+			break;
 		case SDLK_ESCAPE:
 			game->Quit();
 		case SDLK_t:
@@ -176,6 +179,8 @@ void PlayState::UpdateTime(Game* game)
 	if ((game->m_TimerDisplay.getTicks() / 1000.f) > 30.0)
 	{
 		game->m_TimerDisplay.start();
+		//add a wave incrementer here (in game), pass it into the minion factory have
+		//have it increase the health or spawn types
 	}
 	m_Time.str("");
 	float time = abs(31-(game->m_TimerDisplay.getTicks() / 1000.f));

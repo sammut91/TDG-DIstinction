@@ -63,6 +63,16 @@ void Game::PopState()
 	}
 }
 
+void Game::Pause()
+{
+	if (m_Paused == true)
+	{
+		m_Paused = false;
+	}
+	else
+		m_Paused = true;
+}
+
 
 bool Game::LoadMedia()
 {
