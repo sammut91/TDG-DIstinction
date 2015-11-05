@@ -76,6 +76,7 @@ void Tower::Render(SDL_Renderer* r)
 	this->m_Texture->render(m_Position->x, m_Position->y, r);
 }
 
+//to be used when the tower is upgraded
 void Tower::upgrade()
 {
 
