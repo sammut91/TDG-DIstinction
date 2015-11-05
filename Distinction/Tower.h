@@ -31,7 +31,7 @@ public:
 	//tower target aquisition
 	void getTarget(std::vector<Minion*> targets);
 	bool hasTarget = false;
-	void fire();
+	void fire(float timeStep,float fireTimeStep);
 	bool hasFired(float timeStep);
 	std::vector<Projectile*> GetProjectiles(){ return m_Projectiles; }
 	void AddProjectiles(SDL_Renderer* renderer);
@@ -64,10 +64,10 @@ public:
 	void SetCost(float cost);
 	float FireRate(){ return m_FireRate; }
 
-	float m_FireTimer = 0.0;
+	float m_FireTimer = 31.0;
 private:
 	//member values for each tower
-	float m_Cost= 0.0, m_Range = 400.0, m_FireRate = 0.0;
+	float m_Cost= 0.0, m_Range = 200.0, m_FireRate = 0.25;
 	//ammo clip
 	std::vector<Projectile*> m_Projectiles;
 	Minion* m_Target;

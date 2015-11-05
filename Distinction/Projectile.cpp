@@ -18,7 +18,7 @@ Projectile::Projectile(int xPos, int yPos, SDL_Renderer* renderer, int range)
 {
 	m_Source = new Point2D(xPos, yPos);
 	Initialise(renderer,range);
-	m_Position = m_Source;
+	m_Position =  new Point2D(*m_Source);
 }
 
 
@@ -77,25 +77,8 @@ Vector2D Projectile::Calculate(float timeStep)
 
 void Projectile::Update(float timeStep)
 {
-	if (m_Active)
+	if (m_Active && m_Target != NULL)
 	{
-
-		this->m_Accel = &m_Force;
-
-		this->m_Velocity->operator+=(*m_Accel);
-
-		this->m_Position->operator+=(this->m_Velocity->operator*(timeStep));
-
-		if (this->m_Source->distance(*m_Position) > m_Range)
-		{
-			m_Active = false;
-		}
-	}
-	if (!m_Active)
-	{
-
-		this->m_Force = Calculate(timeStep);
-
 		this->m_Force.Truncate(MaxForce);
 		this->m_Accel = &m_Force;
 
@@ -103,11 +86,33 @@ void Projectile::Update(float timeStep)
 
 		this->m_Velocity->Truncate(MaxSpeed);
 
-		m_Active = true;
+		this->m_Position->operator+=(this->m_Velocity->operator*(timeStep));
 
-		if (this->m_Source->distance(*m_Position) <20)
+		if (this->m_Source->distance(*m_Position) > m_Range)
 		{
 			m_Active = false;
+			m_Position->Set(m_Source->x, m_Source->y);
+		}
+
+		if (this->m_Position->x < 10)
+		{
+			m_Active = false;
+			m_Position->Set(m_Source->x,m_Source->y);
+		}
+		else if (this->m_Position->x > 1590)
+		{
+			m_Active = false;
+			m_Position->Set(m_Source->x, m_Source->y);
+		}
+		else if (this->m_Position->y < 10)
+		{
+			m_Active = false;
+			m_Position->Set(m_Source->x, m_Source->y);
+		}
+		else if (this->m_Position->y > 890)
+		{
+			m_Active = false;
+			m_Position->Set(m_Source->x, m_Source->y);			
 		}
 	}
 }
@@ -134,12 +139,17 @@ Vector2D Projectile::PredictPosition(Minion* target)
 {
 	if (target != NULL)
 	{
-		Point2D* pos = new Point2D(*target->GetPosition());
-		Vector2D* vel = new Vector2D(*target->GetVelocity());
+		Point2D* pos = target->GetPosition();
+		Vector2D* vel = target->GetVelocity();
 		Vector2D toTarget = pos->operator-(*this->m_Source);
 
 		float lookAhead = toTarget.Length() / (this->MaxSpeed + target->MaxSpeed);
 
 		return vel->operator*(lookAhead)+*pos;
 	}
+}
+
+void Projectile::CalculateForce(float timeStep)
+{
+	m_Force = Calculate(timeStep);
 }

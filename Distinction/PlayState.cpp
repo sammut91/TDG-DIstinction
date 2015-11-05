@@ -108,13 +108,7 @@ void PlayState::Update(Game* game)
 					tower->AddProjectiles(game->GetRenderer());
 				}
 				tower->getTarget(game->GetMinions());
-				if (!tower->GetProjectiles().empty())
-				{
-					for each (Projectile* p in tower->GetProjectiles())
-					{
-						p->Update(game->GetTimeStep());
-					}
-				}
+				tower->fire(game->GetTimeStep(),time);
 			}
 		}
 	}

@@ -19,7 +19,7 @@ Tower::Tower(SDL_Renderer* renderer, float timer)
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
 	Initialise(renderer);
-	m_FireTimer = timer;
+	//m_FireTimer = timer;
 }
 
 Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* renderer)
@@ -41,7 +41,7 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
 	Initialise(renderer);
-	m_FireTimer = timer;
+	//m_FireTimer = timer;
 }
 
 Tower::~Tower()
@@ -81,46 +81,77 @@ void Tower::upgrade()
 
 }
 
-void Tower::fire()
+void Tower::fire(float timeStep, float fireTimeStep)
 {
-	if (m_Placed && hasTarget)
+	if (!m_Projectiles.empty())
 	{
+		if (hasFired(fireTimeStep))
+		{
+			for each (Projectile* p in m_Projectiles)
+			{
+				if (!p->isActive() && p->GetTarget()!= NULL)
+				{
+					p->CalculateForce(timeStep);
+					p->setActive(true);
+					break;
+				}
+				
+			}
+		}
+		for each (Projectile* p in m_Projectiles)
+		{
+			p->Update(timeStep);
+		}
 	}
 }
 
 //control how fast the tower fires its projectiles
 bool Tower::hasFired(float timeStep)
 {
-	bool fired = true;
+	bool fired = false;
 	if (!((m_FireTimer - timeStep) > m_FireRate)) //if the time between is greater than the fire rate return false
 	{
-		return fired = false;
+		return false;
 	}
 	//if it is less then set the fire timer to the current time and fire return true
 	m_FireTimer = timeStep;
-	return fired;
-
+	if (m_FireTimer < m_FireRate)
+	{
+		m_FireTimer = timeStep;
+	}
+	return fired = true;
 }
 
 void Tower::getTarget(std::vector<Minion*> targets)
 {
+	float distanceTo = 10000000.0;
 	if (!targets.empty())
 	{
 		for each (Minion* target in targets)
 		{
 			if (this->m_Position->distance(*target->GetPosition()) < Range())
 			{
-				m_Target = target;
-				hasTarget = true;
-				if (!m_Projectiles.empty())
+				float distanceToTemp = this->m_Position->distance(*target->GetPosition());
+				if (distanceToTemp < distanceTo)
 				{
-					for each (Projectile* p in m_Projectiles)
+					distanceTo = distanceToTemp;
+					m_Target = target;
+					hasTarget = true;
+					if (!m_Projectiles.empty())
 					{
-						p->SetTarget(m_Target);
+						for each (Projectile* p in m_Projectiles)
+						{
+							if (!p->isActive())
+								p->SetTarget(target);
+
+						}
 					}
 				}
-				break;
 			}
+		}
+		if (distanceTo > 100000)
+		{
+			m_Target = NULL;
 		}
 	}
 }

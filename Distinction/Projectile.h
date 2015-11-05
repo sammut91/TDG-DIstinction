@@ -23,8 +23,9 @@ public:
 	void setActive(bool active);
 
 	//calculate force only if bullet is not active
-	float MaxForce =1000.0, MaxSpeed = 1000.0;
+	float MaxForce =700.0, MaxSpeed = 700.0;
 	Vector2D Calculate(float timeStep);
+	void CalculateForce(float timeStep);
 	Vector2D PredictPosition(Minion* target);
 
 	//range
@@ -36,7 +37,7 @@ public:
 	void SetTarget(Minion* m){ m_Target = m; }
 
 private:
-	bool m_Active;
+	bool m_Active = false;
 	int m_Range;
 	Point2D* m_Position;
 	Point2D* m_Source;
