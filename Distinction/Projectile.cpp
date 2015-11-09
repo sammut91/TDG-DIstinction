@@ -91,27 +91,32 @@ void Projectile::Update(float timeStep)
 		if (this->m_Source->distance(*m_Position) > m_Range)
 		{
 			m_Active = false;
+			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 
 		if (this->m_Position->x < 10)
 		{
 			m_Active = false;
+			m_Target = NULL;
 			m_Position->Set(m_Source->x,m_Source->y);
 		}
 		else if (this->m_Position->x > 1590)
 		{
 			m_Active = false;
+			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 		else if (this->m_Position->y < 10)
 		{
 			m_Active = false;
+			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 		else if (this->m_Position->y > 890)
 		{
 			m_Active = false;
+			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);			
 		}
 	}

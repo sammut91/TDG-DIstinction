@@ -30,6 +30,7 @@ public:
 
 	//tower target aquisition
 	void getTarget(std::vector<Minion*> targets);
+	Minion* gTarget(std::vector<Minion*> targets);
 	bool hasTarget = false;
 	void fire(float timeStep,float fireTimeStep);
 	bool hasFired(float timeStep);
@@ -67,10 +68,9 @@ public:
 	float m_FireTimer = 31.0;
 private:
 	//member values for each tower
-	float m_Cost= 0.0, m_Range = 200.0, m_FireRate = 0.25;
+	float m_Cost= 0.0, m_Range = 300.0, m_FireRate = 0.25;
 	//ammo clip
 	std::vector<Projectile*> m_Projectiles;
-	Minion* m_Target;
 	std::string objType;
 	Point2D* m_Position;
 	bool m_BeingPlaced;

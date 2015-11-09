@@ -32,7 +32,8 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			game->Pause();
 			break;
 		case SDLK_ESCAPE:
-			game->Quit();
+			game->PopState();
+			break;
 		case SDLK_t:
 			timeText.str("");
 			timeText << (game->m_Timer.getTicks() / 1000.f);
@@ -120,7 +121,6 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	SDL_Rect bGround = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	m_Background->render(0, 0, renderer, &bGround);
 	SDL_FillRect(surface, NULL, 0x0066FF);
-	//SDL_UpdateWindowSurface(window);
 
 	if (!game->GetMinions().empty())
 	{

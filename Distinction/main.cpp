@@ -80,8 +80,7 @@ int main(int argc, char* args[])
 						game.Update();
 					}		
 					game.m_Timer.start();
-					game.Render(screenSurface,window,m_Renderer);
-					
+					game.Render(screenSurface,window,m_Renderer);					
 				}
 			}
 
