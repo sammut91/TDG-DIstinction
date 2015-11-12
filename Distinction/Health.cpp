@@ -10,6 +10,11 @@ Health::~Health()
 {
 }
 
+void Health::SetHealth(int health)
+{
+	m_Health = health;
+}
+
 void Health::IncreaseHealth()
 {
 	m_Health++;
