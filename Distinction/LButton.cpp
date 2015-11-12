@@ -75,6 +75,10 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				{
 					game->PopState();
 				}
+				else if (m_Type == "addBomb")
+				{
+					game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
+				}
 				break;
 			}
 

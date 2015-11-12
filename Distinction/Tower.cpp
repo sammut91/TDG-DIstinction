@@ -61,6 +61,26 @@ void Tower::Update(int mouseX, int mouseY)
 {
 	m_Position->x = mouseX;
 	m_Position->y = mouseY;
+
+	if (m_Position->x <= 0)
+	{
+		m_Position->x = 0;
+	}
+
+	if (m_Position->x >= 1440 - m_Texture->getWidth())
+	{
+		m_Position->x = 1440 - m_Texture->getWidth();
+	}
+
+	if (m_Position->y >= 900 - m_Texture->getHeight())
+	{
+		m_Position->y = 900 - m_Texture->getHeight();
+	}
+
+	if (m_Position->y <= 0)
+	{
+		m_Position->y = 0;
+	}
 }
 
 

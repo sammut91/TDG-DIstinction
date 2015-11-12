@@ -41,7 +41,12 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			std::cout << timeText.str() << std::endl;
 			break;
 		case SDLK_a:
-			game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
+			if (!m_PlacingTower)
+			{
+				game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
+				m_PlacingTower = true;
+			}
+				
 		}
 	}
 	if (event.type == SDL_KEYUP)
@@ -60,6 +65,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 					t->setPlaced(true);
 					t->setBeingPlaced(false);
 					t->setSelected(false);
+					m_PlacingTower = false;
 				}
 			}
 		}
@@ -84,6 +90,7 @@ void PlayState::Update(Game* game)
 			if (game->GetMinions()[i]->AtDestination() && game->GetMinions()[i]->GetPath()->isFinished())
 			{
 				game->m_Minions.erase(game->m_Minions.begin() + i);
+				game->m_Score -= 100;
 			}
 		}
 	}

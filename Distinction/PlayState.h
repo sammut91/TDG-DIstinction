@@ -39,4 +39,5 @@ private:
 	std::stringstream m_Time;
 	int mouseXPos = 0;
 	int mouseYPos = 0;	
+	bool m_PlacingTower = false;
 };
