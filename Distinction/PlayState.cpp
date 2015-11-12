@@ -81,6 +81,8 @@ void PlayState::Update(Game* game)
 {
 	UpdateTime(game);
 	float time = (abs(30 - (game->m_TimerDisplay.getTicks() / 1000.0f)));
+
+	//spawn minions
 	if (game->HasSpawned(time))
 	{
 		game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));

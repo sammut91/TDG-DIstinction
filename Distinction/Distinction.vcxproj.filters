@@ -62,6 +62,15 @@
     <ClCompile Include="QuitState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Upgradeable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Damage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -113,6 +122,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuitState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Upgradeable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Damage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

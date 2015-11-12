@@ -81,7 +81,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Damage.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="HeavyMinion.cpp" />
     <ClCompile Include="LButton.cpp" />
     <ClCompile Include="LTexture.cpp" />
@@ -96,12 +98,15 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Tower.cpp" />
     <ClCompile Include="TowerFactory.cpp" />
+    <ClCompile Include="Upgradeable.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Damage.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="HeavyMinion.h" />
     <ClInclude Include="LButton.h" />
     <ClInclude Include="LTexture.h" />
@@ -115,6 +120,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="TowerFactory.h" />
+    <ClInclude Include="Upgradeable.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>

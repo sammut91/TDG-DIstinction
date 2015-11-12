@@ -46,6 +46,7 @@ bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 		printf("Failed to load minion sprite texture!\n");
 		success = false;
 	}
+	SetHealth(3);
 
 	return success;
 }

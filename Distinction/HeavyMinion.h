@@ -1,8 +1,9 @@
 #pragma once
 #include "Minion.h"
+#include "Health.h"
 
 class HeavyMinion :
-	public Minion
+	public Minion, public Health
 {
 public:
 	HeavyMinion();
