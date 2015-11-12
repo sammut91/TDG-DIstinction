@@ -68,6 +68,10 @@ public:
 	std::vector<Minion*> m_Minions;
 	std::vector<Tower*> m_Towers;
 
+	std::stringstream m_ScoreText, m_CurrencyText;
+	float m_Score = 0.0;
+	float m_Currency = 200.0;
+
 private:
 	bool m_running = true, m_Paused = false;
 	std::vector<GameState*> m_states;
@@ -79,6 +83,7 @@ private:
 	SDL_Renderer* m_Renderer;
 	
 	float m_SpawnDelay= 1.0, m_SpawnTimer = 31.0;
+	
 
 };
 

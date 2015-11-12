@@ -11,7 +11,8 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 {
 	if (event.type == SDL_QUIT)
 	{
-		game->Quit();
+		game->PushState(QuitState::Instance(),r);
+		//game->Quit();
 	}
 
 	if (event.type == SDL_MOUSEMOTION)
@@ -134,14 +135,10 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 		//game->GetPath()->Render(renderer);
 	}
 
-	if (!m_TimeDisplay->loadFromRenderedText(m_Time.str(), textColor, renderer, game->getFont()))
-	{
-		printf("Failed to render text texture!\n");
-	}
-	if (m_TimeDisplay != NULL)
-	{
-		m_TimeDisplay->render(800, 870, renderer);
-	}
+	//render the score, display and time
+	RenderText(m_TimeDisplay, game, textColor, m_Time.str(), 800, 870);
+	RenderText(m_Score, game, textColor, game->m_ScoreText.str(), 1510, 70);
+	RenderText(m_Currency, game, textColor, game->m_CurrencyText.str(), 1520, 865);
 
 	if (!game->m_Towers.empty())
 	{
@@ -167,8 +164,13 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 void PlayState::Initialise(SDL_Renderer* r, Game* game)
 {
 	SDL_RenderClear(r);
+	SDL_Color textColor = { 1.0, 1.0, 1.0 };
 	m_Background = new LTexture();
 	m_TimeDisplay = new LTexture();
+	m_Score = new LTexture();
+
+	m_Currency = new LTexture();
+
 	LoadMedia(r);
 }
 
@@ -185,7 +187,7 @@ void PlayState::Initialise(SDL_Renderer* r)
 bool PlayState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;
-	if (!m_Background->loadFromFile("PlayScreen.bmp", r))
+	if (!m_Background->loadFromFile("PlayScreen.png", r))
 	{
 		printf("Failed to load background sprite texture!\n");
 		success = false;
@@ -205,4 +207,16 @@ void PlayState::UpdateTime(Game* game)
 	m_Time.str("");
 	float time = abs(31-(game->m_TimerDisplay.getTicks() / 1000.f));
 	m_Time << time;
+}
+
+void PlayState::RenderText(LTexture* texture, Game* game, SDL_Color color, std::string text, int xPos, int yPos)
+{
+	if (!texture->loadFromRenderedText(text, color, game->GetRenderer(), game->getFont()))
+	{
+		printf("Failed to render text texture!\n");
+	}
+	if (texture != NULL)
+	{
+		texture->render(xPos, yPos, game->GetRenderer());
+	}
 }

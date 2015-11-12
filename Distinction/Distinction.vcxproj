@@ -92,6 +92,7 @@
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="QuitState.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Tower.cpp" />
     <ClCompile Include="TowerFactory.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Path.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="QuitState.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="TowerFactory.h" />

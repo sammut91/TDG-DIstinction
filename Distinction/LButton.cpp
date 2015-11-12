@@ -5,10 +5,10 @@
 LButton::LButton(std::string path, SDL_Renderer* r, std::string type, int xPos, int yPos)
 {
 	setPosition(xPos, yPos);
-	setSize(200, 400);
 	m_Type = type;
 	m_Texture = new LTexture();
 	m_Texture->loadFromFile(path.c_str(), r);
+	setSize(m_Texture->getHeight(), m_Texture->getWidth());
 
 }
 
@@ -67,8 +67,17 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				{
 					game->PushState(PlayState::Instance(), r);
 				}
+				else if (m_Type == "quit")
+				{
+					game->Quit();
+				}
+				else if (m_Type == "back")
+				{
+					game->PopState();
+				}
 				break;
 			}
+
 		}
 	}
 }

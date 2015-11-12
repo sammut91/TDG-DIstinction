@@ -66,10 +66,11 @@ int main(int argc, char* args[])
 
 				//Fill the surface white
 				//SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
+				int loops = 0;
 				while (game.Running())
 				{
-					
+					if (loops > 10)
+						loops = 0;
 					while (SDL_PollEvent(&event) != 0)
 					{
 						game.HandleInput(event,m_Renderer);
@@ -78,9 +79,20 @@ int main(int argc, char* args[])
 					if (!game.isPaused()) 
 					{
 						game.Update();
+						if (loops == 10)
+						{
+							game.m_ScoreText.str("");
+							game.m_CurrencyText.str("");
+							game.m_Score += 1;
+							game.m_ScoreText << (int)game.m_Score;
+
+							game.m_Currency += 0.1;
+							game.m_CurrencyText << (int)game.m_Currency;
+						}
 					}		
 					game.m_Timer.start();
-					game.Render(screenSurface,window,m_Renderer);					
+					game.Render(screenSurface,window,m_Renderer);		
+					loops += 1;
 				}
 			}
 

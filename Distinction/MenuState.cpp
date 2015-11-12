@@ -1,6 +1,5 @@
 #include "MenuState.h"
 #include "PlayState.h"
-#include <SDL_image.h>
 
 MenuState MenuState::m_MenuState;
 
@@ -60,7 +59,6 @@ void MenuState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	//SDL_BlitSurface(m_BackgroundPNG, NULL, surface, NULL);
 	//SDL_UpdateWindowSurface(window);
 	SDL_RenderPresent(r);
-	
 }
 
 void MenuState::Initialise(SDL_Renderer* r)
@@ -77,16 +75,15 @@ void MenuState::Initialise(SDL_Renderer* r, Game* game)
 {
 	int imfFlags = IMG_INIT_PNG;
 	m_Background = new LTexture();
-	addButton(new LButton("PlayButton.bmp", r, "play", 200, 500));
-	addButton(new LButton("HelpButton.bmp", r, "help", 800, 500));
+	addButton(new LButton("PlayButton.png", r, "play", 700, 500));
+	addButton(new LButton("HelpButton.png", r, "help", 700, 700));
 	LoadMedia(r);
-
 }
 
 bool MenuState::LoadMedia(SDL_Renderer* r)
 {
 	bool success = true;
-	if (!m_Background->loadFromFile("MenuScreen.bmp", r))
+	if (!m_Background->loadFromFile("MenuScreen.png", r))
 	{
 		printf("Failed to load button sprite texture!\n");
 		success = false;

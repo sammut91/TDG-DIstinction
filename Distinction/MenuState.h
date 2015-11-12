@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include <SDL_image.h>
 #include <vector>
 
 
