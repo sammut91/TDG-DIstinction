@@ -21,6 +21,7 @@ public:
 
 	bool LoadMedia(SDL_Renderer* r);
 	void UpdateTime(Game* game);
+	void addButton(LButton* b);
 	//singleton
 	static PlayState* Instance(){
 		return &m_PlayState;
@@ -31,6 +32,7 @@ protected:
 
 private:
 	static PlayState m_PlayState;
+	std::vector<LButton*> m_Buttons;
 	LTexture* m_Background;
 	Path* m_Path;
 	LTexture* m_TimeDisplay;

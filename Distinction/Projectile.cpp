@@ -38,7 +38,7 @@ bool Projectile::Initialise(SDL_Renderer* renderer, int range)
 	this->m_Force = Vector2D(0.0, 0.0);
 	this->m_Accel = new Vector2D(0.0, 0.0);
 	bool success = true;
-	if (!this->m_Texture->loadFromFile("RedBullet.png", renderer))
+	if (!this->m_Texture->loadFromFile("BombBullet.png", renderer))
 	{
 		printf("Failed to load projectile sprite texture!\n");
 		success = false;
@@ -54,7 +54,7 @@ bool Projectile::Initialise(SDL_Renderer* renderer)
 	this->m_Force = Vector2D(0.0, 0.0);
 	this->m_Accel = new Vector2D(0.0, 0.0);
 	bool success = true;
-	if (!this->m_Texture->loadFromFile("RedBullet.png", renderer))
+	if (!this->m_Texture->loadFromFile("BombBullet.png", renderer))
 	{
 		printf("Failed to load projectile sprite texture!\n");
 		success = false;

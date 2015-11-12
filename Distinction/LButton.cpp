@@ -82,6 +82,7 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				break;
 			}
 
+
 		}
 	}
 }

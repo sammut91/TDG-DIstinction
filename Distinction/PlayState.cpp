@@ -69,6 +69,11 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 				}
 			}
 		}
+
+		for each (LButton* button in m_Buttons)
+		{
+			button->handleEvent(&event, game, r);
+		}
 	}
 }
 
@@ -130,6 +135,13 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	m_Background->render(0, 0, renderer, &bGround);
 	SDL_FillRect(surface, NULL, 0x0066FF);
 
+	//render the buttons
+	for each (LButton* button in m_Buttons)
+	{
+		button->render(renderer);
+	}
+
+
 	if (!game->GetMinions().empty())
 	{
 		for each (Minion* m in game->GetMinions())
@@ -175,9 +187,8 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 	m_Background = new LTexture();
 	m_TimeDisplay = new LTexture();
 	m_Score = new LTexture();
-
 	m_Currency = new LTexture();
-
+	addButton(new LButton("BombButton.png", r, "addBomb", 1490, 300));
 	LoadMedia(r);
 }
 
@@ -226,4 +237,9 @@ void PlayState::RenderText(LTexture* texture, Game* game, SDL_Color color, std::
 	{
 		texture->render(xPos, yPos, game->GetRenderer());
 	}
+}
+
+void PlayState::addButton(LButton* button)
+{
+	m_Buttons.push_back(button);
 }

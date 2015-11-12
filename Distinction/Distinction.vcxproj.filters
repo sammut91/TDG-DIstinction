@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Resources">
+      <UniqueIdentifier>{85184da8-2243-4f57-920a-4eb617c303fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -114,26 +117,64 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="AboutButton.bmp" />
-    <Image Include="ArrowIcon.bmp" />
-    <Image Include="BlueBlob.bmp" />
-    <Image Include="BombIcon.bmp" />
-    <Image Include="BuildIcon.bmp" />
-    <Image Include="CancelButton.bmp" />
-    <Image Include="GreenBlob.bmp" />
-    <Image Include="HelpButton.bmp" />
-    <Image Include="LaserIcon.bmp" />
-    <Image Include="MenuScreen.bmp" />
-    <Image Include="PlayButton.bmp" />
-    <Image Include="PurpleBlob.bmp" />
-    <Image Include="RedBlob.bmp" />
-    <Image Include="Upgrade.bmp" />
-    <Image Include="YellowBlob.bmp" />
-    <Image Include="PlayScreen.bmp" />
-    <Image Include="BlueBlob.png" />
-    <Image Include="GreenBullet.png" />
+    <Image Include="AboutButton.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="ArrowIcon.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="BlueBlob.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="BlueBlob.png">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="BombIcon.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="BuildIcon.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="CancelButton.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="GreenBlob.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="GreenBullet.png">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="HelpButton.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="LaserIcon.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="MenuScreen.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="PlayButton.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="PlayScreen.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="PurpleBlob.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="RedBlob.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="Upgrade.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
+    <Image Include="YellowBlob.bmp">
+      <Filter>Source Files\Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="AlexandriaFLF.ttf" />
+    <Font Include="AlexandriaFLF.ttf">
+      <Filter>Source Files\Resources</Filter>
+    </Font>
   </ItemGroup>
 </Project>
