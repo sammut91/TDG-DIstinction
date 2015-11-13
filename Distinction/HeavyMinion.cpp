@@ -47,6 +47,7 @@ bool HeavyMinion::Initialise(SDL_Renderer* renderer)
 		success = false;
 	}
 	SetHealth(3);
+	SetScore(50);
 
 	return success;
 }

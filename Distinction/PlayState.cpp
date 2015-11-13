@@ -94,10 +94,17 @@ void PlayState::Update(Game* game)
 		for (int i = 0; i < game->GetMinions().size(); i++)
 		{
 			game->GetMinions()[i]->Update(game->GetTimeStep());
+
 			if (game->GetMinions()[i]->AtDestination() && game->GetMinions()[i]->GetPath()->isFinished())
 			{
 				game->m_Minions.erase(game->m_Minions.begin() + i);
 				game->m_Score -= 100;
+			}
+
+			if (!game->GetMinions()[i]->IsAlive())
+			{
+				game->m_Score += game->GetMinions()[i]->GetScore();
+				game->m_Minions.erase(game->m_Minions.begin() + i);
 			}
 		}
 	}
@@ -124,7 +131,7 @@ void PlayState::Update(Game* game)
 					tower->AddProjectiles(game->GetRenderer());
 				}
 				tower->getTarget(game->GetMinions());
-				tower->fire(game->GetTimeStep(),time);
+				tower->fire(game->GetTimeStep(),time, game->GetMinions());
 			}
 		}
 	}

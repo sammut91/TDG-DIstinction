@@ -1,9 +1,8 @@
 #pragma once
 #include "Minion.h"
-#include "Health.h"
 
 class HeavyMinion :
-	public Minion, public Health
+	public Minion
 {
 public:
 	HeavyMinion();
@@ -33,6 +32,8 @@ public:
 
 	bool Initialise(SDL_Renderer* renderer);
 	bool Initialise();
+
+	Health Health;
 
 private:
 	LTexture* m_Texture;

@@ -1,8 +1,10 @@
 #pragma once
 #include "Path.h"
 #include "GameObject.h"
+#include "Health.h"
+#include "Score.h"
 class Minion :
-	public GameObject
+	public GameObject, public Health, public Score
 {
 public:
 	Minion();
@@ -48,7 +50,7 @@ public:
 	float MaxForce = 150.0, MaxSpeed = 150.0;
 	virtual Vector2D CalculateForce(float timeStep);
 	virtual Vector2D Seek(Point2D* targetPos);
-
+	
 private:
 	LTexture* m_Texture;
 	Point2D* m_Position;

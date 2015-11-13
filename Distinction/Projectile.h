@@ -2,6 +2,7 @@
 #include "LTexture.h"
 #include "Vector2D.h"
 #include "Minion.h"
+#include "Damage.h"
 
 class Projectile
 {
@@ -11,7 +12,7 @@ public:
 	Projectile(int xPos, int yPos, SDL_Renderer* renderer, int range);
 	~Projectile();
 
-	void Update(float timeStep);
+	void Update(float timeStep,std::vector<Minion*> &targets);
 	void Render(SDL_Renderer* renderer);
 
 	//initialisers

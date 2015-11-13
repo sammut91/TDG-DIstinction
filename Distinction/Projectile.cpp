@@ -75,7 +75,7 @@ Vector2D Projectile::Calculate(float timeStep)
 	}
 }
 
-void Projectile::Update(float timeStep)
+void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 {
 	if (m_Active && m_Target != NULL)
 	{
@@ -95,25 +95,42 @@ void Projectile::Update(float timeStep)
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 
-		if (this->m_Position->x < 10)
+		for (int i = 0; i <targets.size(); i++)
+		{
+			if (this->m_Source->distance(*targets[i]->GetPosition()) < m_Range)
+			{
+				if (this->m_Position->distance(*targets[i]->GetPosition()) <= 50)
+				{
+					targets[i]->DecreaseHealth();
+					m_Active = false;
+					m_Target = NULL;
+					m_Position->Set(m_Source->x, m_Source->y);
+				}
+			}
+
+		}
+
+
+
+		if (this->m_Position->x < 10 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
 			m_Position->Set(m_Source->x,m_Source->y);
 		}
-		else if (this->m_Position->x > 1590)
+		else if (this->m_Position->x > 1590 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
-		else if (this->m_Position->y < 10)
+		else if (this->m_Position->y < 10 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
-		else if (this->m_Position->y > 890)
+		else if (this->m_Position->y > 890 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;

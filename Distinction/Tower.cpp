@@ -100,7 +100,7 @@ void Tower::upgrade()
 
 }
 
-void Tower::fire(float timeStep, float fireTimeStep)
+void Tower::fire(float timeStep, float fireTimeStep, std::vector<Minion*> &targets)
 {
 	if (!m_Projectiles.empty())
 	{
@@ -119,7 +119,7 @@ void Tower::fire(float timeStep, float fireTimeStep)
 		}
 		for each (Projectile* p in m_Projectiles)
 		{
-			p->Update(timeStep);
+			p->Update(timeStep, targets);
 		}
 	}
 }

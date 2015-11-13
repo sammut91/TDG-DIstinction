@@ -34,3 +34,8 @@ void Damage::DecreaseDamage(int amount)
 {
 	m_Damage -= amount;
 }
+
+void Damage::DealDamage()
+{
+
+}

@@ -32,7 +32,7 @@ public:
 	void getTarget(std::vector<Minion*> targets);
 	Minion* gTarget(std::vector<Minion*> targets);
 	bool hasTarget = false;
-	void fire(float timeStep,float fireTimeStep);
+	void fire(float timeStep, float fireTimeStep, std::vector<Minion*> &targets);
 	bool hasFired(float timeStep);
 	std::vector<Projectile*> GetProjectiles(){ return m_Projectiles; }
 	void AddProjectiles(SDL_Renderer* renderer);
