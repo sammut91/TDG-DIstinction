@@ -55,7 +55,6 @@ private:
 	LTexture* m_Texture;
 	Point2D* m_Position;
 	int m_Height, m_Width;
-	int m_Health;
 	Vector2D* m_Velocity;
 	Vector2D* m_Accel;
 	Path* m_Path;

@@ -110,8 +110,6 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 
 		}
 
-
-
 		if (this->m_Position->x < 10 && m_Active)
 		{
 			m_Active = false;
@@ -174,4 +172,9 @@ Vector2D Projectile::PredictPosition(Minion* target)
 void Projectile::CalculateForce(float timeStep)
 {
 	m_Force = Calculate(timeStep);
+}
+
+void Projectile::SetTarget(Minion* target)
+{
+	m_Target = target;
 }

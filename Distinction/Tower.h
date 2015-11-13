@@ -8,11 +8,12 @@ The Tower class
 #pragma once
 #include "GameObject.h"
 #include <SDL.h>
+#include "Cost.h"
 #include <vector>
 #include "Projectile.h"
 
 class Tower :
-	public GameObject
+	public GameObject, public Cost
 {
 public:
 	Tower(SDL_Renderer* renderer);
@@ -29,7 +30,7 @@ public:
 	void Render(SDL_Renderer* r);
 
 	//tower target aquisition
-	void getTarget(std::vector<Minion*> targets);
+	void getTarget(std::vector<Minion*> &targets);
 	Minion* gTarget(std::vector<Minion*> targets);
 	bool hasTarget = false;
 	void fire(float timeStep, float fireTimeStep, std::vector<Minion*> &targets);
@@ -61,14 +62,12 @@ public:
 	//get and set the range and cost
 	float Range(){ return m_Range; }
 	void SetRange(float range);
-	float Cost(){ return m_Cost; }
-	void SetCost(float cost);
 	float FireRate(){ return m_FireRate; }
 
 	float m_FireTimer = 31.0;
 private:
 	//member values for each tower
-	float m_Cost= 0.0, m_Range = 300.0, m_FireRate = 0.25;
+	float m_Range = 300.0, m_FireRate = 0.25;
 	//ammo clip
 	std::vector<Projectile*> m_Projectiles;
 	std::string objType;

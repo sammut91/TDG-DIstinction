@@ -35,7 +35,7 @@ public:
 
 	//target fucntions
 	Minion* GetTarget(){ return m_Target; }
-	void SetTarget(Minion* m){ m_Target = m; }
+	void SetTarget(Minion* m);
 
 private:
 	bool m_Active = false;

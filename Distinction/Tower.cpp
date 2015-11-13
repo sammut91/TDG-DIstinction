@@ -17,6 +17,7 @@ Tower::Tower(SDL_Renderer* renderer, float timer)
 	this->m_Selected = true;
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
+	SetCost(150.0);
 	Initialise(renderer);
 	//m_FireTimer = timer;
 }
@@ -28,6 +29,7 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 	this->m_Selected = true;
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
+	SetCost(150.0);
 	Initialise(renderer);
 }
 
@@ -38,6 +40,7 @@ Tower::Tower(std::string towerType, float xPos, float yPos, SDL_Renderer* render
 	this->m_Selected = true;
 	this->m_Texture = new LTexture();
 	this->m_Placed = false;
+	SetCost(150.0);
 	Initialise(renderer);
 	//m_FireTimer = timer;
 }
@@ -141,7 +144,7 @@ bool Tower::hasFired(float timeStep)
 	return fired = true;
 }
 
-void Tower::getTarget(std::vector<Minion*> targets)
+void Tower::getTarget(std::vector<Minion*> &targets)
 {
 	float distanceTo = 10000000.0;
 	if (!targets.empty())

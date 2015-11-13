@@ -77,7 +77,11 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				}
 				else if (m_Type == "addBomb")
 				{
-					game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
+					if (game->m_Currency >= 150)
+					{
+						game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
+						game->m_Currency -= game->m_Towers.back()->GetCost();
+					}
 				}
 				break;
 			}
