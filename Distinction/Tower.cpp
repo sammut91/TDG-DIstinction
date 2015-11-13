@@ -142,8 +142,6 @@ bool Tower::hasFired(float timeStep)
 		//makes sure that the tower resets when the wave resets
 		m_FireTimer = 30.0;
 	}
-	printf("%f", m_FireTimer);
-	printf("Time Step %f", timeStep);
 	return fired = true;
 }
 

@@ -104,6 +104,7 @@ void PlayState::Update(Game* game)
 			if (!game->GetMinions()[i]->IsAlive())
 			{
 				game->m_Score += game->GetMinions()[i]->GetScore();
+				game->m_Currency += game->GetMinions()[i]->GetValue();
 				game->m_Minions.erase(game->m_Minions.begin() + i);
 			}
 		}
@@ -230,7 +231,7 @@ void PlayState::UpdateTime(Game* game)
 {
 	if ((game->m_TimerDisplay.getTicks() / 1000.f) > 30.0)
 	{
-		if (m_WaveNumber % 5 == 0)
+		if (m_WaveNumber % 2 == 0)
 		{
 			game->DecreaseSpawnDelay(0.1);
 		}
