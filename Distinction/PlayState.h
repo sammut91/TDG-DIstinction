@@ -38,7 +38,9 @@ private:
 	LTexture* m_TimeDisplay;
 	LTexture* m_Score;
 	LTexture* m_Currency;
-	std::stringstream m_Time;
+	LTexture* m_Wave;
+	int m_WaveNumber = 1;
+	std::stringstream m_Time, m_WaveText;
 	int mouseXPos = 0;
 	int mouseYPos = 0;	
 	bool m_PlacingTower = false;

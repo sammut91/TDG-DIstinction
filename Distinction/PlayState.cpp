@@ -167,6 +167,8 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	RenderText(m_TimeDisplay, game, textColor, m_Time.str(), 800, 870);
 	RenderText(m_Score, game, textColor, game->m_ScoreText.str(), 1510, 70);
 	RenderText(m_Currency, game, textColor, game->m_CurrencyText.str(), 1520, 865);
+	RenderText(m_Wave,game, textColor, m_WaveText.str(), 550, 870);
+
 
 	if (!game->m_Towers.empty())
 	{
@@ -196,6 +198,7 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 	m_Background = new LTexture();
 	m_TimeDisplay = new LTexture();
 	m_Score = new LTexture();
+	m_Wave = new LTexture();
 	m_Currency = new LTexture();
 	addButton(new LButton("BombButton.png", r, "addBomb", 1490, 300));
 	LoadMedia(r);
@@ -227,10 +230,21 @@ void PlayState::UpdateTime(Game* game)
 {
 	if ((game->m_TimerDisplay.getTicks() / 1000.f) > 30.0)
 	{
+		if (m_WaveNumber % 5 == 0)
+		{
+			game->DecreaseSpawnDelay(0.1);
+		}
+		else if (m_WaveNumber % 10 == 0)
+		{
+
+		}
+		m_WaveNumber++;
 		game->m_TimerDisplay.start();
 		//add a wave incrementer here (in game), pass it into the minion factory have
 		//have it increase the health or spawn types
 	}
+	m_WaveText.str("");
+	m_WaveText << "Current Wave: " << m_WaveNumber;
 	m_Time.str("");
 	float time = abs(31-(game->m_TimerDisplay.getTicks() / 1000.f));
 	m_Time << time;

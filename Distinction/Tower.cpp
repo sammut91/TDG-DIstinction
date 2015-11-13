@@ -139,8 +139,11 @@ bool Tower::hasFired(float timeStep)
 	m_FireTimer = timeStep;
 	if (m_FireTimer < m_FireRate)
 	{
-		m_FireTimer = timeStep;
+		//makes sure that the tower resets when the wave resets
+		m_FireTimer = 30.0;
 	}
+	printf("%f", m_FireTimer);
+	printf("Time Step %f", timeStep);
 	return fired = true;
 }
 
@@ -150,38 +153,42 @@ void Tower::getTarget(std::vector<Minion*> &targets)
 	if (!targets.empty())
 	{
 		for each (Minion* target in targets)
-		{
+		{			
+			//if the target is within the range of the tower
 			if (this->m_Position->distance(*target->GetPosition()) < Range())
 			{
 				float distanceToTemp = this->m_Position->distance(*target->GetPosition());
 				if (distanceToTemp < distanceTo)
 				{
 					distanceTo = distanceToTemp;
-					hasTarget = true;
+
+					//if the projectiles arent empty
 					if (!m_Projectiles.empty())
 					{
+						//printf("Changing target %f", distanceTo);
 						for each (Projectile* p in m_Projectiles)
 						{
 							if (!p->isActive())
 							{
-								p->SetTarget(target);
+								// set the target of the projectiles to the current closest target
+								p->SetTarget(target);							
 							}
-								
+
 						}
 					}
 				}
 			}
 		}
-		//if (distanceTo > 100000)
-		//{
-		//	m_Target = NULL;
-		//}
 	}
-}
+	else 
+	for each (Projectile* p in m_Projectiles)
+	{
+		if (!p->isActive())
+		{
+			p->SetTarget(NULL);
+		}
+	}
 
-Minion* Tower::gTarget(std::vector<Minion*> targets)
-{
-	return NULL;
 }
 
 bool Tower::Initialise(SDL_Renderer* renderer)

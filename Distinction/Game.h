@@ -61,6 +61,7 @@ public:
 	bool HasSpawned(float timeStep);
 	float SpawnDelay(){ return m_SpawnDelay; }
 	void SetSpawnDelay(float spawnDelay);
+	void DecreaseSpawnDelay(float amount);
 
 	//tower control
 	void AddTower(Tower* t);

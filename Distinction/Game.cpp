@@ -179,4 +179,9 @@ void Game::SetRenderer(SDL_Renderer* r)
 	m_Renderer = r;
 }
 
+void Game::DecreaseSpawnDelay(float amount)
+{
+	m_SpawnDelay -= amount;
+}
+
 
