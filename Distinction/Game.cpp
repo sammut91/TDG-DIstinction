@@ -145,12 +145,15 @@ bool Game::HasSpawned(float timeStep)
 	//upper and lower limit of spawning 
 	if (!(timeStep <= 5.0 || timeStep >= 25.0))
 	{
-		if (!((m_SpawnTimer - timeStep) > m_SpawnDelay))
+		//if (!((m_SpawnTimer - timeStep) > m_SpawnDelay))
+		if (!((m_SpawnTimer - timeStep) > CalculateSpawnDelay()))
 		{
 			return spawned = false;
 		}
 		m_SpawnTimer = timeStep;
-		if (m_SpawnTimer < m_SpawnDelay)
+		//if (m_SpawnTimer < m_SpawnDelay)
+		if (m_SpawnTimer < CalculateSpawnDelay())
+
 		{
 			m_SpawnTimer = timeStep;
 		}
@@ -168,6 +171,7 @@ void Game::SetSpawnDelay(float spawnDelay)
 {
 	m_SpawnDelay = spawnDelay;
 }
+
 Path* Game::GetPath()
 {
 	Path* p = new Path(*m_Path);

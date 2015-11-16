@@ -2,9 +2,10 @@
 #include "Path.h"
 #include "GameObject.h"
 #include "Health.h"
+#include "Damage.h"
 #include "Score.h"
 class Minion :
-	public GameObject, public Health, public Score
+	public GameObject, public Health, public Score, public Damage
 {
 public:
 	Minion();

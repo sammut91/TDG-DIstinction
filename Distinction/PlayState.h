@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Path.h" 
 #include "QuitState.h"
+#include "Base.h"
 #include "HeavyMinion.h"
 
 class PlayState :
@@ -44,4 +45,6 @@ private:
 	int mouseXPos = 0;
 	int mouseYPos = 0;	
 	bool m_PlacingTower = false;
+
+	Base* m_Base;
 };

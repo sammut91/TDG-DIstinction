@@ -145,3 +145,8 @@ int LTexture::getHeight()
 {
 	return mHeight;
 }
+
+void LTexture::setWidth(int amount)
+{
+	mWidth = amount;
+}

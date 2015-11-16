@@ -40,6 +40,8 @@ public:
 	int getWidth();
 	int getHeight();
 
+	void setWidth(int amount);
+
 private:
 	//The actual hardware texture
 	SDL_Texture* mTexture = NULL;

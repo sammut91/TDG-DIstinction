@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="Cost.cpp" />
     <ClCompile Include="Damage.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="WaveController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="Cost.h" />
     <ClInclude Include="Damage.h" />
     <ClInclude Include="Game.h" />

@@ -105,6 +105,7 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 					m_Active = false;
 					m_Target = NULL;
 					m_Position->Set(m_Source->x, m_Source->y);
+					m_Velocity->Set(0.0, 0.0);
 				}
 			}
 
@@ -114,6 +115,7 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 		{
 			m_Active = false;
 			m_Target = NULL;
+			m_Velocity->Set(0.0, 0.0);
 			m_Position->Set(m_Source->x,m_Source->y);
 		}
 		else if (this->m_Position->x > 1590 && m_Active)
@@ -121,18 +123,21 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 			m_Active = false;
 			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
+			m_Velocity->Set(0.0, 0.0);
 		}
 		else if (this->m_Position->y < 10 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
 			m_Position->Set(m_Source->x, m_Source->y);
+			m_Velocity->Set(0.0, 0.0);
 		}
 		else if (this->m_Position->y > 890 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
-			m_Position->Set(m_Source->x, m_Source->y);			
+			m_Position->Set(m_Source->x, m_Source->y);		
+			m_Velocity->Set(0.0, 0.0);
 		}
 	}
 }

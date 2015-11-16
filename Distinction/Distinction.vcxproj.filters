@@ -80,6 +80,9 @@
     <ClCompile Include="WaveController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -149,6 +152,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WaveController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,12 +7,14 @@
 #include "Minion.h"
 #include "MinionFactory.h"
 #include "Tower.h"
+#include "WaveController.h"
 #include "TowerFactory.h"
 #include "Path.h"
 
 class GameState;
 
-class Game
+class Game:
+	public WaveController
 {
 public:
 	Game();
@@ -83,8 +85,7 @@ private:
 	TTF_Font* m_Font;
 	SDL_Renderer* m_Renderer;
 	
-	float m_SpawnDelay= 1.0, m_SpawnTimer = 31.0;
-	
+	float m_SpawnDelay= 1.0, m_SpawnTimer = 31.0;	
 
 };
 

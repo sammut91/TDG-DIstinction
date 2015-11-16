@@ -97,6 +97,7 @@ void PlayState::Update(Game* game)
 
 			if (game->GetMinions()[i]->AtDestination() && game->GetMinions()[i]->GetPath()->isFinished())
 			{
+				m_Base->DecreaseHealth(game->GetMinions()[i]->GetDamage());
 				game->m_Minions.erase(game->m_Minions.begin() + i);
 				game->m_Score -= 100;
 			}
@@ -136,6 +137,9 @@ void PlayState::Update(Game* game)
 			}
 		}
 	}
+
+	//update the base 
+	m_Base->Update();
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
@@ -144,6 +148,8 @@ void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL
 	SDL_Rect bGround = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	m_Background->render(0, 0, renderer, &bGround);
 	SDL_FillRect(surface, NULL, 0x0066FF);
+
+	m_Base->Render(renderer);
 
 	//render the buttons
 	for each (LButton* button in m_Buttons)
@@ -199,6 +205,7 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 	m_Background = new LTexture();
 	m_TimeDisplay = new LTexture();
 	m_Score = new LTexture();
+	m_Base = new Base(r);
 	m_Wave = new LTexture();
 	m_Currency = new LTexture();
 	addButton(new LButton("BombButton.png", r, "addBomb", 1490, 300));
@@ -233,13 +240,14 @@ void PlayState::UpdateTime(Game* game)
 	{
 		if (m_WaveNumber % 2 == 0)
 		{
-			game->DecreaseSpawnDelay(0.1);
+			game->IncreaseWaveSize();
 		}
 		else if (m_WaveNumber % 10 == 0)
 		{
 
 		}
 		m_WaveNumber++;
+		game->IncreaseWaveNumber();
 		game->m_TimerDisplay.start();
 		//add a wave incrementer here (in game), pass it into the minion factory have
 		//have it increase the health or spawn types
