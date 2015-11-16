@@ -4,6 +4,7 @@
 #include "QuitState.h"
 #include "Base.h"
 #include "HeavyMinion.h"
+#include "GameOverState.h"
 
 class PlayState :
 	public GameState

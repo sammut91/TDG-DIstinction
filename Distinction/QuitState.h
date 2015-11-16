@@ -20,10 +20,7 @@ public:
 	static QuitState* Instance(){
 		return &m_QuitState;
 	}
-
-
-
-
+	
 protected:
 	QuitState() {}
 

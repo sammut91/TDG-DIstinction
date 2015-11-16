@@ -12,23 +12,23 @@ MinionFactory::~MinionFactory()
 
 }
 
-Minion* MinionFactory::createMinion(std::string type, SDL_Renderer* renderer, Path* p)
+Minion* MinionFactory::createMinion(std::string type, SDL_Renderer* renderer, Path* p, int health, int damage)
 {
 	if (type == "Heavy")
 	{
-		return new HeavyMinion(m_Position->x,m_Position->y,renderer, p);
+		return new HeavyMinion(m_Position->x,m_Position->y,renderer, p,damage,health);
 	}
 	else if (type == "Fast")
 	{
-		return new FastMinion(m_Position->x, m_Position->y, renderer, p);
+		return new FastMinion(m_Position->x, m_Position->y, renderer, p, damage, health);
 	}
 	else if (type == "Boss")
 	{
-		return new BossMinion(m_Position->x, m_Position->y, renderer, p);
+		return new BossMinion(m_Position->x, m_Position->y, renderer, p, damage, health);
 	}
 	else if (type == "Average")
 	{
-		return new AverageMinion(m_Position->x, m_Position->y, renderer, p);
+		return new AverageMinion(m_Position->x, m_Position->y, renderer, p, damage, health);
 	}
 	else
 	{

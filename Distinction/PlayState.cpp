@@ -145,6 +145,16 @@ void PlayState::Update(Game* game)
 
 	//update the base 
 	m_Base->Update();
+	if (m_Base->GetHealth() <= 0)
+	{
+		game->m_HighScoreText.str("");
+		game->HiScoreFile.open("hi-scores.txt");
+		game->m_HighScoreText << game->m_ScoreText.str();
+
+		//writes the high score to the text file
+		game->HiScoreFile <<std::endl << "High Score: " << game->m_ScoreText.str() << std::endl;
+		game->PushState(GameOverState::Instance(),game->GetRenderer());
+	}
 }
 
 void PlayState::Render(Game* game, SDL_Surface* surface, SDL_Window* window, SDL_Renderer* renderer)
@@ -241,15 +251,22 @@ bool PlayState::LoadMedia(SDL_Renderer* r)
 
 void PlayState::UpdateTime(Game* game)
 {
+	game->IsBossRound = false;
 	if ((game->m_TimerDisplay.getTicks() / 1000.f) > 30.0)
 	{
 		if (m_WaveNumber % 2 == 0)
 		{
 			game->IncreaseWaveSize();
+			game->IncreaseWaveDifficultyHealth();
+		}
+		else if (m_WaveNumber % 2 == 1)
+		{
+			game->IncreaseWaveSize();
+			game->IncreaseWaveDifficultyDamage();
 		}
 		else if (m_WaveNumber % 10 == 0)
 		{
-
+			game->IsBossRound = true;
 		}
 		m_WaveNumber++;
 		game->IncreaseWaveNumber();

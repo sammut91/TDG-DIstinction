@@ -8,7 +8,8 @@ public:
 	~FastMinion();
 	FastMinion(int xPos, int yPos);
 	FastMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
-
+	FastMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p, int damage, int health);
+	
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);
 	void Render(SDL_Renderer* r);

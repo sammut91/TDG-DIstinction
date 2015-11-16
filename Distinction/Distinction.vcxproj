@@ -88,6 +88,7 @@
     <ClCompile Include="Damage.cpp" />
     <ClCompile Include="FastMinion.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="HeavyMinion.cpp" />
     <ClCompile Include="LButton.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="FastMinion.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="HeavyMinion.h" />

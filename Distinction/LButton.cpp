@@ -1,5 +1,5 @@
 #include "LButton.h"
-#include "Game.h"
+#include "MenuState.h"
 #include "PlayState.h"
 
 LButton::LButton(std::string path, SDL_Renderer* r, std::string type, int xPos, int yPos)
@@ -74,6 +74,10 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				else if (m_Type == "back")
 				{
 					game->PopState();
+				}
+				else if (m_Type == "menu")
+				{
+					game->ChangeState(MenuState::Instance(), r);
 				}
 				else if (m_Type == "addBomb")
 				{

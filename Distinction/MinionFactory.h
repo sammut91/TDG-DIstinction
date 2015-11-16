@@ -11,7 +11,7 @@ public:
 	MinionFactory();
 	~MinionFactory();
 
-	Minion* createMinion(std::string type, SDL_Renderer* renderer, Path* p);
+	Minion* createMinion(std::string type, SDL_Renderer* renderer, Path* p, int health, int damage);
 
 
 	void cleanup();

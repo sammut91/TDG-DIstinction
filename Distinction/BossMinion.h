@@ -8,6 +8,7 @@ public:
 	~BossMinion();
 	BossMinion(int xPos, int yPos);
 	BossMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
+	BossMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p, int damage, int health);
 
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);

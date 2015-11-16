@@ -30,3 +30,19 @@ void WaveController::IncreaseWaveSize(int amount)
 {
 	m_WaveSize += amount;
 }
+
+void WaveController::IncreaseWaveDifficultyHealth()
+{
+	GetAverageHealth++;
+	GetBossHealth++;
+	GetFastHealth++;
+	GetHeavyHealth++;
+}
+
+void WaveController::IncreaseWaveDifficultyDamage()
+{
+	GetAverageDamage++;
+	GetFastDamage++;
+	GetBossDamage++;
+	GetHeavyDamage++;
+}

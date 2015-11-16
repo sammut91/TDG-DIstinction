@@ -10,6 +10,7 @@ public:
 	
 	HeavyMinion(int xPos, int yPos);
 	HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
+	HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p, int damage, int health);
 
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);

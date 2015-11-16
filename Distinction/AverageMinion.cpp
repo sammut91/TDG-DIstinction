@@ -37,6 +37,23 @@ AverageMinion::AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p
 	Initialise(renderer);
 }
 
+AverageMinion::AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p, int damage, int health)
+{
+	m_Position = new Point2D(xPos, yPos);
+	m_Velocity = new Vector2D(0.0, 0.0);
+	m_Accel = new Vector2D(0.0, 0.0);
+	this->m_Width = 40;
+	this->m_Height = 40;
+	m_Texture = new LTexture();
+	//creates a new path for each minion that is the same as the main path
+	//so they dont all follow the same path
+	m_Path = new Path(*p);
+	Initialise(renderer);
+
+	SetHealth(health);
+	SetDamage(damage);
+}
+
 bool AverageMinion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true;
@@ -46,10 +63,8 @@ bool AverageMinion::Initialise(SDL_Renderer* renderer)
 		printf("Failed to load minion sprite texture!\n");
 		success = false;
 	}
-	SetHealth(3);
 	SetScore(25);
 	SetValue(4);
-	SetDamage(3);
 	return success;
 }
 

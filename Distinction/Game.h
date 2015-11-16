@@ -12,6 +12,8 @@
 #include "Tower.h"
 #include "WaveController.h"
 #include "TowerFactory.h"
+#include <iostream>
+#include <fstream>
 #include "Path.h"
 
 class GameState;
@@ -76,9 +78,13 @@ public:
 	std::vector<Minion*> m_Minions;
 	std::vector<Tower*> m_Towers;
 
-	std::stringstream m_ScoreText, m_CurrencyText;
+	std::stringstream m_ScoreText, m_CurrencyText, m_HighScoreText;
 	float m_Score = 0.0;
 	float m_Currency = 200.0;
+
+	bool IsBossRound = false;
+
+	std::ofstream HiScoreFile;
 
 private:
 	bool m_running = true, m_Paused = false;
@@ -89,7 +95,7 @@ private:
 	MinionFactory* m_Spawner;
 	TTF_Font* m_Font;
 	SDL_Renderer* m_Renderer;
-	
+
 	float m_SpawnDelay= 1.0, m_SpawnTimer = 31.0;	
 
 };

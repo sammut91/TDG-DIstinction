@@ -8,6 +8,8 @@ public:
 	~AverageMinion();
 	AverageMinion(int xPos, int yPos);
 	AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
+	AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p, int damage, int health);
+
 
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);

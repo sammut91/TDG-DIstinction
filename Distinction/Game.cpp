@@ -124,7 +124,7 @@ std::vector<Minion*> Game::SpawnWave(int minionAmount)
 	std::vector<Minion*> wave;
 	for (int i = 0; i < minionAmount; i++)
 	{
-		wave.push_back(m_Spawner->createMinion("Heavy", m_Renderer, GetPath()));
+		//wave.push_back(m_Spawner->createMinion("Heavy", m_Renderer, GetPath()));
 	}	
 	return wave;
 }
@@ -197,16 +197,23 @@ void Game::AddMinion(Game* game)
 	switch (xRan)
 	{
 	case 1: case 2: case 3: case 4: case 5:
-		m_Minions.push_back(game->GetSpawner()->createMinion("Fast", game->GetRenderer(), game->GetPath()));
+		m_Minions.push_back(game->GetSpawner()->createMinion("Fast", game->GetRenderer(), game->GetPath(),game->GetFastHealth,GetFastDamage));
 		break;
 	case 6: case 7: case 8: case 9:
-		m_Minions.push_back(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
+		m_Minions.push_back(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath(),game->GetHeavyHealth, GetHeavyDamage));
 		break;
 	case 10:
-		m_Minions.push_back(game->GetSpawner()->createMinion("Boss", game->GetRenderer(), game->GetPath()));
+		if (IsBossRound)
+		{
+			m_Minions.push_back(game->GetSpawner()->createMinion("Boss", game->GetRenderer(), game->GetPath(), game->GetBossHealth, GetBossDamage));
+		}
+		else
+		{
+			m_Minions.push_back(game->GetSpawner()->createMinion("Average", game->GetRenderer(), game->GetPath(), game->GetAverageHealth, GetAverageDamage));
+		}
 		break;
 	default:
-		m_Minions.push_back(game->GetSpawner()->createMinion("Average", game->GetRenderer(), game->GetPath()));
+		m_Minions.push_back(game->GetSpawner()->createMinion("Average", game->GetRenderer(), game->GetPath(), game->GetAverageHealth, GetAverageDamage));
 		break;
 	}
 }
