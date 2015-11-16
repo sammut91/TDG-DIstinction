@@ -14,7 +14,7 @@ Base::Base(SDL_Renderer* r)
 	m_HealthBar = new LTexture();
 	m_HealthBarBorder = new LTexture();
 	m_Position = new Point2D(1100, 480);
-	SetHealth(2);
+	SetHealth(200);
 	Initialise(r);
 }
 
