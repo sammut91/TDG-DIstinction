@@ -85,7 +85,8 @@ void PlayState::Update(Game* game)
 	//spawn minions
 	if (game->HasSpawned(time))
 	{
-		game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
+		//game->AddMinion(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
+		game->AddMinion(game);
 	}
 
 	//update the minions
@@ -98,6 +99,10 @@ void PlayState::Update(Game* game)
 			if (game->GetMinions()[i]->AtDestination() && game->GetMinions()[i]->GetPath()->isFinished())
 			{
 				m_Base->DecreaseHealth(game->GetMinions()[i]->GetDamage());
+				if (m_Base->GetHealth() < 0)
+				{
+					m_Base->SetHealth(0);
+				}
 				game->m_Minions.erase(game->m_Minions.begin() + i);
 				game->m_Score -= 100;
 			}

@@ -1,6 +1,6 @@
-#include "HeavyMinion.h"
+#include "AverageMinion.h"
 
-HeavyMinion::HeavyMinion()
+AverageMinion::AverageMinion()
 {
 	m_Position = new Point2D(100.0, 100.0);
 	m_Velocity = new Vector2D(0.0, 0.0);
@@ -10,7 +10,7 @@ HeavyMinion::HeavyMinion()
 	this->m_Height = 50;
 }
 
-HeavyMinion::HeavyMinion(int xPos, int yPos)
+AverageMinion::AverageMinion(int xPos, int yPos)
 {
 	m_Position->x = xPos;
 	m_Position->y = yPos;
@@ -22,7 +22,7 @@ HeavyMinion::HeavyMinion(int xPos, int yPos)
 	m_Path = new Path();
 }
 
-HeavyMinion::HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p)
+AverageMinion::AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p)
 {
 	m_Position = new Point2D(xPos, yPos);
 	m_Velocity = new Vector2D(0.0, 0.0);
@@ -33,27 +33,27 @@ HeavyMinion::HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p)
 
 	//creates a new path for each minion that is the same as the main path
 	//so they dont all follow the same path
-	m_Path = new Path(*p); 
+	m_Path = new Path(*p);
 	Initialise(renderer);
 }
 
-bool HeavyMinion::Initialise(SDL_Renderer* renderer)
+bool AverageMinion::Initialise(SDL_Renderer* renderer)
 {
 	bool success = true;
 	this->setVelocity(0.0, 0.0);
-	if (!m_Texture->loadFromFile("PurpleBlob.png", renderer))
+	if (!m_Texture->loadFromFile("BlueBlob.png", renderer))
 	{
 		printf("Failed to load minion sprite texture!\n");
 		success = false;
 	}
-	SetHealth(5);
-	SetScore(50);
-	SetValue(5);
-	SetDamage(4);
+	SetHealth(3);
+	SetScore(25);
+	SetValue(4);
+	SetDamage(3);
 	return success;
 }
 
-void HeavyMinion::Update(float timeStep)
+void AverageMinion::Update(float timeStep)
 {
 	Vector2D force = CalculateForce(timeStep);
 
@@ -95,7 +95,7 @@ void HeavyMinion::Update(float timeStep)
 }
 
 //render with renderer
-void HeavyMinion::Render(SDL_Renderer* r)
+void AverageMinion::Render(SDL_Renderer* r)
 {
 	if (m_Texture != NULL)
 	{
@@ -104,14 +104,14 @@ void HeavyMinion::Render(SDL_Renderer* r)
 
 }
 
-bool HeavyMinion::Initialise()
+bool AverageMinion::Initialise()
 {
 	bool success = true;
 
 	return true;
 }
 
-Vector2D HeavyMinion::Seek(Point2D* targetPos)
+Vector2D AverageMinion::Seek(Point2D* targetPos)
 {
 	Vector2D* desired_vel = (&targetPos->operator-(*m_Position));
 	desired_vel->operator*(600.0);
@@ -119,11 +119,11 @@ Vector2D HeavyMinion::Seek(Point2D* targetPos)
 
 }
 
-Vector2D HeavyMinion::FollowPath()
+Vector2D AverageMinion::FollowPath()
 {
 	Vector2D force;
 	if (m_Path->isFinished())
-	{	
+	{
 		if (m_Position->distance(*m_Path->currentPoint())>30)
 		{
 			return force = Seek(m_Path->currentPoint());
@@ -134,7 +134,7 @@ Vector2D HeavyMinion::FollowPath()
 	}
 	else
 	{
-		if (m_Position->distance(*m_Path->currentPoint())<30)
+		if (m_Position->distance(*m_Path->currentPoint())<40)
 		{
 			m_Path->incrementPoint();
 		}
@@ -142,7 +142,7 @@ Vector2D HeavyMinion::FollowPath()
 	}
 }
 
-Vector2D HeavyMinion::CalculateForce(float timeStep)
+Vector2D AverageMinion::CalculateForce(float timeStep)
 {
 	Vector2D force;
 	Point2D*  test = new Point2D(1300.0, 600.0);
@@ -150,13 +150,13 @@ Vector2D HeavyMinion::CalculateForce(float timeStep)
 
 }
 
-void HeavyMinion::AddPath(Path* p)
+void AverageMinion::AddPath(Path* p)
 {
-	if(p!= NULL)	
+	if (p != NULL)
 		this->m_Path = p;
 }
 
-bool HeavyMinion::AtDestination()
+bool AverageMinion::AtDestination()
 {
 	bool atDest = false;
 	if (this->m_Position->distance(*this->m_Path->getDestination())<30)
@@ -166,3 +166,4 @@ bool HeavyMinion::AtDestination()
 
 	return atDest;
 }
+

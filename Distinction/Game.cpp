@@ -188,4 +188,27 @@ void Game::DecreaseSpawnDelay(float amount)
 	m_SpawnDelay -= amount;
 }
 
+void Game::AddMinion(Game* game)
+{
+	int xRan;
+	srand(time(0)); // This will ensure a really randomized number by help of time.
+
+	xRan = rand() % 20 + 1; // Randomizing the number between 1-15.
+	switch (xRan)
+	{
+	case 1: case 2: case 3: case 4: case 5:
+		m_Minions.push_back(game->GetSpawner()->createMinion("Fast", game->GetRenderer(), game->GetPath()));
+		break;
+	case 6: case 7: case 8: case 9:
+		m_Minions.push_back(game->GetSpawner()->createMinion("Heavy", game->GetRenderer(), game->GetPath()));
+		break;
+	case 10:
+		m_Minions.push_back(game->GetSpawner()->createMinion("Boss", game->GetRenderer(), game->GetPath()));
+		break;
+	default:
+		m_Minions.push_back(game->GetSpawner()->createMinion("Average", game->GetRenderer(), game->GetPath()));
+		break;
+	}
+}
+
 

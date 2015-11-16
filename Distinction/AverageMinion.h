@@ -1,19 +1,17 @@
 #pragma once
 #include "Minion.h"
-
-class HeavyMinion :
+class AverageMinion :
 	public Minion
 {
 public:
-	HeavyMinion();
-	~HeavyMinion();
-	
-	HeavyMinion(int xPos, int yPos);
-	HeavyMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
+	AverageMinion();
+	~AverageMinion();
+	AverageMinion(int xPos, int yPos);
+	AverageMinion(int xPos, int yPos, SDL_Renderer* renderer, Path* p);
 
 	//Update and rendering for Heavy Minion
 	void Update(float timeStep);
-	void Render(SDL_Renderer* r);	
+	void Render(SDL_Renderer* r);
 
 	//path
 	void AddPath(Path* p);
@@ -25,7 +23,7 @@ public:
 	Point2D* GetPosition(){ return this->m_Position; }
 
 	//calculations
-	float MaxForce = 125.0, MaxSpeed = 125.0;
+	float MaxForce = 150.0, MaxSpeed = 150.0;
 	Vector2D CalculateForce(float timeStep);
 	Vector2D Seek(Point2D* targetPos);
 	Vector2D FollowPath();
@@ -44,4 +42,3 @@ private:
 	Vector2D* m_Accel;
 	Path* m_Path;
 };
-

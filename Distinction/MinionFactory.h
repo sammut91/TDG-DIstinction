@@ -1,6 +1,9 @@
 #pragma once
 #include "Minion.h"
 #include "HeavyMinion.h"
+#include "FastMinion.h"
+#include "BossMinion.h"
+#include "AverageMinion.h"
 
 class MinionFactory
 {

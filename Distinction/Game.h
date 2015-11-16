@@ -5,6 +5,9 @@
 #include "Timer.h"
 #include <sstream>
 #include "Minion.h"
+#include <iostream>
+#include <ctime> // Needed for the true randomization
+#include <cstdlib> 
 #include "MinionFactory.h"
 #include "Tower.h"
 #include "WaveController.h"
@@ -60,6 +63,8 @@ public:
 	std::vector<Minion*> SpawnWave(int minionAmount);
 	void SpawnMinion(std::vector<Minion*>);
 	void AddMinion(Minion* m);
+	void AddMinion(Game* game);
+
 	bool HasSpawned(float timeStep);
 	float SpawnDelay(){ return m_SpawnDelay; }
 	void SetSpawnDelay(float spawnDelay);
