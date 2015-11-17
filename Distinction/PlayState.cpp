@@ -12,7 +12,6 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 	if (event.type == SDL_QUIT)
 	{
 		game->PushState(QuitState::Instance(),r);
-		//game->Quit();
 	}
 
 	if (event.type == SDL_MOUSEMOTION)
@@ -33,7 +32,7 @@ void PlayState::HandleInput(Game* game, SDL_Event event, SDL_Renderer* r)
 			game->Pause();
 			break;
 		case SDLK_ESCAPE:
-			game->PopState();
+			game->PushState(QuitState::Instance(), game->GetRenderer());
 			break;
 		case SDLK_t:
 			timeText.str("");
@@ -224,6 +223,7 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 	m_Wave = new LTexture();
 	m_Currency = new LTexture();
 	addButton(new LButton("BombButton.png", r, "addBomb", 1490, 300));
+	addButton(new LButton("Question.png", r, "help", 1390, 830));
 	LoadMedia(r);
 }
 
@@ -231,8 +231,6 @@ void PlayState::Initialise(SDL_Renderer* r, Game* game)
 void PlayState::Initialise(SDL_Renderer* r)
 {
 	SDL_RenderClear(r);
-	m_Path = new Path();
-	m_Path->createPath(false);
 	m_Background = new LTexture();
 	LoadMedia(r);
 }

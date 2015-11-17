@@ -91,6 +91,7 @@
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="HeavyMinion.cpp" />
+    <ClCompile Include="HelpState.cpp" />
     <ClCompile Include="LButton.cpp" />
     <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="main.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="HeavyMinion.h" />
+    <ClInclude Include="HelpState.h" />
     <ClInclude Include="LButton.h" />
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="MenuState.h" />

@@ -1,6 +1,7 @@
 #include "LButton.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "HelpState.h"
 
 LButton::LButton(std::string path, SDL_Renderer* r, std::string type, int xPos, int yPos)
 {
@@ -66,18 +67,27 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 				if (m_Type == "play")
 				{
 					game->PushState(PlayState::Instance(), r);
+					break;
 				}
 				else if (m_Type == "quit")
 				{
 					game->Quit();
+					break;
 				}
 				else if (m_Type == "back")
 				{
 					game->PopState();
+					break;
+				}
+				else if (m_Type == "help")
+				{
+					game->PushState(HelpState::Instance(), r);
+					break;
 				}
 				else if (m_Type == "menu")
 				{
 					game->ChangeState(MenuState::Instance(), r);
+					break;
 				}
 				else if (m_Type == "addBomb")
 				{
@@ -86,6 +96,7 @@ void LButton::handleEvent(SDL_Event* e, Game* game, SDL_Renderer* r)
 						game->AddTower(game->GetTowerFactory()->createTower("", r, (game->m_TimerDisplay.getTicks() / 1000.f)));
 						game->m_Currency -= game->m_Towers.back()->GetCost();
 					}
+					break;
 				}
 				break;
 			}

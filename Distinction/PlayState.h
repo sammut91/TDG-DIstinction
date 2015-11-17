@@ -36,7 +36,6 @@ private:
 	static PlayState m_PlayState;
 	std::vector<LButton*> m_Buttons;
 	LTexture* m_Background;
-	Path* m_Path;
 	LTexture* m_TimeDisplay;
 	LTexture* m_Score;
 	LTexture* m_Currency;

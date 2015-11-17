@@ -165,6 +165,7 @@ Vector2D Projectile::PredictPosition(Minion* target)
 
 		float lookAhead = toTarget.Length() / (this->MaxSpeed + target->MaxSpeed);
 
+		//return pos->operator+((*vel)*lookAhead);
 		return vel->operator*(lookAhead)+*pos;
 	}
 }

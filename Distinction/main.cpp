@@ -89,8 +89,8 @@ int main(int argc, char* args[])
 							game.m_Currency += 0.1;
 							game.m_CurrencyText << (int)game.m_Currency;
 						}
+						game.m_Timer.start();
 					}		
-					game.m_Timer.start();
 					game.Render(screenSurface,window,m_Renderer);		
 					loops += 1;
 				}
