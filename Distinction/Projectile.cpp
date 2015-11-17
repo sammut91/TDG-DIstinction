@@ -79,10 +79,12 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 {
 	if (m_Active && m_Target != NULL)
 	{
+		//these calculations make sure that the force is only applied once to each projectile
 		this->m_Force.Truncate(MaxForce);
 		this->m_Accel = &m_Force;
 
-		this->m_Velocity->operator+=(m_Accel->operator*(timeStep));
+		this->m_Velocity->operator+=(*m_Accel);
+		this->m_Velocity->operator*(timeStep);
 
 		this->m_Velocity->Truncate(MaxSpeed);
 
@@ -104,6 +106,9 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 					targets[i]->DecreaseHealth();
 					m_Active = false;
 					m_Target = NULL;
+					m_Force.Set(0.0, 0.0);
+					m_Accel->Set(0.0, 0.0);
+					m_Velocity->Set(0.0, 0.0);
 					m_Position->Set(m_Source->x, m_Source->y);
 				}
 			}
@@ -114,24 +119,36 @@ void Projectile::Update(float timeStep, std::vector<Minion*> &targets)
 		{
 			m_Active = false;
 			m_Target = NULL;
+			m_Force.Set(0.0, 0.0);
+			m_Accel->Set(0.0, 0.0);
+			m_Velocity->Set(0.0, 0.0);
 			m_Position->Set(m_Source->x,m_Source->y);
 		}
 		else if (this->m_Position->x > 1590 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
+			m_Force.Set(0.0, 0.0);
+			m_Accel->Set(0.0, 0.0);
+			m_Velocity->Set(0.0, 0.0);
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 		else if (this->m_Position->y < 10 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
+			m_Force.Set(0.0, 0.0);
+			m_Accel->Set(0.0, 0.0);
+			m_Velocity->Set(0.0, 0.0);
 			m_Position->Set(m_Source->x, m_Source->y);
 		}
 		else if (this->m_Position->y > 890 && m_Active)
 		{
 			m_Active = false;
 			m_Target = NULL;
+			m_Force.Set(0.0, 0.0);
+			m_Accel->Set(0.0, 0.0);
+			m_Velocity->Set(0.0, 0.0);
 			m_Position->Set(m_Source->x, m_Source->y);		
 		}
 	}

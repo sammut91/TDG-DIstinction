@@ -30,7 +30,7 @@ public:
 	void Render(SDL_Renderer* r);
 
 	//tower target aquisition
-	void getTarget(std::vector<Minion*> &targets);
+	void getTarget(std::vector<Minion*> targets);
 
 	void fire(float timeStep, float fireTimeStep, std::vector<Minion*> &targets);
 	bool hasFired(float timeStep);

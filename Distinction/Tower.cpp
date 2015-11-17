@@ -145,7 +145,7 @@ bool Tower::hasFired(float timeStep)
 	return fired = true;
 }
 
-void Tower::getTarget(std::vector<Minion*> &targets)
+void Tower::getTarget(std::vector<Minion*> targets)
 {
 	float distanceTo = 10000000.0;
 	if (!targets.empty())
